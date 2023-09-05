@@ -20,7 +20,7 @@ Communities.belongsToMany(Users, {
 });
 
 
-//users / calendars
+// users / calendars
 Users.hasOne(Calendars, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE',
@@ -28,6 +28,20 @@ Users.hasOne(Calendars, {
 
 Calendars.belongsTo(Users, {
   foreignKey: 'user_id',
+});
+
+
+//calendars/communities
+Calendars.belongsToMany(Communities, { 
+  foreignKey: 'community_id', 
+  through: CommunityUsers, 
+  unique: false 
+});
+
+Communities.belongsToMany(Calendars, { 
+  foreignKey: 'community_id', 
+  through: CommunityUsers, 
+  unique: false 
 });
 
 

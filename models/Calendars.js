@@ -11,16 +11,12 @@ Calendars.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    community_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'id',
+        model: 'communityusers',
+        key: 'community_id',
       },
-    },
-    show_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     date: {
       type: DataTypes.DATEONLY,
