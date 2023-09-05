@@ -1,0 +1,23 @@
+[
+    {
+        "community_id": "1",
+        "user_id": "1",
+        "subject": "The first thread"
+    },
+    {
+        "community_id": "1",
+        "user_id": "2",
+        "subject": "The second thread"
+    },
+    {
+        "community_id": "2",
+        "user_id": "2",
+        "subject": "The third thread"
+    },
+    {
+        "community_id": "2",
+        "user_id": "3",
+        "subject": "The fourth thread"
+    }
+  ]
+  

@@ -31,18 +31,18 @@ Calendars.belongsTo(Users, {
 });
 
 
-//calendars/communities
-Calendars.belongsToMany(Communities, { 
-  foreignKey: 'community_id', 
-  through: CommunityUsers, 
-  unique: false 
-});
+// //calendars/communities
+// Calendars.belongsToMany(Communities, { 
+//   foreignKey: 'community_id', 
+//   through: CommunityUsers, 
+//   unique: false 
+// });
 
-Communities.belongsToMany(Calendars, { 
-  foreignKey: 'community_id', 
-  through: CommunityUsers, 
-  unique: false 
-});
+// Communities.belongsToMany(Calendars, { 
+//   foreignKey: 'community_id', 
+//   through: CommunityUsers, 
+//   unique: false 
+// });
 
 
 //communities / threads
