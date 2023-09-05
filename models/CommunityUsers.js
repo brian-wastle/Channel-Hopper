@@ -5,23 +5,25 @@ class CommunityUsers extends Model {}
 
 CommunityUsers.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     community_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
-      references: {
-        model: 'communities',
-        key: 'id',
-      },
+      references: 'communities',
+      referencesKey: 'id',
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
-      references: {
-        model: 'users',
-        key: 'id',
-      },
+      references: 'users',
+      referencesKey: 'id',
     },
   },
   {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {  } = require('../models');
+const { Users, Communities, CommunityUsers, Threads, Reviews } = require('../models');
 const withAuth = require('../utils/auth');
 
 
@@ -11,6 +11,33 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//render the user's profile page
+router.get('/profile', async (req, res) => {
+  
+  try {
+//get communities
+// TO DO: cannot get current communities, sequelize errors due to associations betweek communityusers table and users table
+
+//get all user's threads
+    const threadData = await Threads.findAll({ where: { user_id: 2 } });
+    const threads = threadData.map((thread) => thread.get({ plain: true }));
+//get all user's reviews
+    const reviewData = await Reviews.findAll({ where: { user_id: 2 } });
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+
+//render profile with threads and reviews data
+    res.render('profile', { 
+      threads, 
+      reviews,
+      // logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Show a single Review
 
 
 
