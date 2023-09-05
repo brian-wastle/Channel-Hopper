@@ -1,0 +1,40 @@
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Reviews extends Model {}
+
+Reviews.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    community_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'communities',
+        key: 'id',
+      },
+    },
+    body: {
+      type: DataTypes.TEXT('medium'),
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'reviews',
+  }
+);
+
+module.exports = Reviews;

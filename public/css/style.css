@@ -1,0 +1,51 @@
+* {
+  color: #0c3c52;
+}
+header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+
+}
+
+header {
+  background-color: #8abbdb;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #12668d;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+#del-button {
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+.comment {
+  margin-left: 0; 
+  margin-right: auto;
+  text-align: left;
+}
+
+.username {
+  margin-left: 0; 
+  margin-right: auto;
+  text-align: left;
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 100%;
+}

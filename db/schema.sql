@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS grpproj2_db;
+CREATE DATABASE grpproj2_db;
+
