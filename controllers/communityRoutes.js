@@ -48,5 +48,26 @@ router.get('/:id', async (req, res) => {
   });
 
 
+  router.get('/:id/threads', async (req, res) => {
+    try {
+ 
+      
+        const threadData = await Threads.findAll() 
+        const threads = threadData.map((thread) => thread.get({ plain: true }));
+        const communityData = await Communities.findAll() 
+        const communities = communityData.map((community) => community.get({ plain: true }));
+
+
+        
+
+  
+      console.log(threads);
+        res.render('community', {...threads, communities, logged_in: req.session.logged_in })
+      
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 module.exports = router;
