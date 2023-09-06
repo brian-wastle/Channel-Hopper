@@ -35,6 +35,7 @@ Reviews.init(
     },
     plusones: {
       type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     date_created: {
       type: DataTypes.DATE,
