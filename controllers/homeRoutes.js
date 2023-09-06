@@ -7,7 +7,15 @@ const withAuth = require('../utils/auth');
 //render the homepage
 router.get('/', async (req, res) => {
   try {
-    res.render('login');
+    //get the show with the most threads
+
+    //get the threads with the most posts, include author name
+
+
+
+    res.render('homepage', {
+      logged_in: req.session.logged_in,
+    });
     
   } catch (err) {
     res.status(500).json(err);
@@ -64,7 +72,7 @@ console.log(currentUserId)
       threads, 
       reviews,
       communities,
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -135,8 +143,6 @@ router.get('/threads/:id', async (req, res) => {
       var user;
     }
 
-
-
     if (user) {
       var currentUserId = user.dataValues.id;
     } else {
@@ -167,6 +173,9 @@ router.get('/threads/:id', async (req, res) => {
   }
 });
 
+
+
+
 //send user to signup page
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
@@ -175,6 +184,9 @@ router.get('/signup', (req, res) => {
   }
   res.render('signup');
 });
+
+
+
 
 //checks to see if user is logged in
 router.get('/login', (req, res) => {
@@ -186,5 +198,8 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+
+
 
 module.exports = router;

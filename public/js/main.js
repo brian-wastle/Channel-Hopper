@@ -11,10 +11,10 @@ const getHomepage = async () => {
 };
 
 const getDashboard = async () => {
-    const response = await fetch('/dashboard');
+    const response = await fetch('/profile');
   
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/profile');
     } else {
       alert(response.statusText);
     }
