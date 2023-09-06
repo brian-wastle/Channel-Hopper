@@ -18,32 +18,47 @@ router.get('/', async (req, res) => {
 
 
 //render the user's profile page
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   
   try {
 //get communities
-// TO DO: cannot get current communities, sequelize errors due to associations betweek communityusers table and users table
+
+    if (req.session.user_id) {
+      var user = await Users.findOne({
+        where: {
+          id: req.session.user_id,
+        },
+        attributes: ['name', 'id'], 
+        });
+      } else {
+        var user;
+      }
+
+    if (user) {
+        var currentUserId = user.dataValues.id;
+      } else {
+        var currentUserId = 0;
+      }
+
+
+
     const commData = await Communities.findAll({
       include: [
         {
           model: Users,
-          through: CommunityUsers, // The join table
-          where: { id: 2 }, // Condition for the community
+          through: CommunityUsers, 
+          where: { id: currentUserId },
         },
       ],
     });
-console.log('commData');
-console.log(commData);
     const communities = commData.map((community) => community.get({ plain: true }));
-
+console.log(currentUserId)
 //get all user's threads
-    const threadData = await Threads.findAll({ where: { user_id: 2 } });
+    const threadData = await Threads.findAll({ where: { user_id: currentUserId } });
     const threads = threadData.map((thread) => thread.get({ plain: true }));
 //get all user's reviews
-    const reviewData = await Reviews.findAll({ where: { user_id: 2 } });
+    const reviewData = await Reviews.findAll({ where: { user_id: currentUserId } });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-console.log('communities');
-console.log(communities);
 //render profile with threads and reviews data
     res.render('profile', { 
       threads, 
@@ -70,19 +85,18 @@ router.get('/reviews/:id', async (req, res) => {
         id: req.session.user_id,
       },
       attributes: ['name', 'id'], 
-    });
+      });
     } else {
       var user;
     }
 
-
-
-    if (user) {
+  if (user) {
       var currentUserId = user.dataValues.id;
     } else {
       var currentUserId = 0;
     }
-    console.log(req.session)
+
+
     const reviewData = await Reviews.findByPk(req.params.id, {
       include: [
         { 
@@ -92,8 +106,6 @@ router.get('/reviews/:id', async (req, res) => {
       ],
     });
     const reviews = reviewData.get({ plain: true });
-
-    console.log(reviews.body);
 
     res.render('review', {
       ...reviews,
@@ -155,9 +167,6 @@ router.get('/threads/:id', async (req, res) => {
   }
 });
 
-
-
-
 //send user to signup page
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
@@ -171,7 +180,7 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/profile');
     return;
   }
 
