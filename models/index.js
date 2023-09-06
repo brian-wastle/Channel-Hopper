@@ -11,13 +11,11 @@ const CommunityUsers = require('./CommunityUsers');
 Communities.belongsToMany(Users, {
   foreignKey: 'community_id',
   through: CommunityUsers,
-  unique: false
 });
 
 Users.belongsToMany(Communities, {
   foreignKey: 'user_id',
   through: CommunityUsers,
-  unique: false
 });
 
 
@@ -90,4 +88,4 @@ Reviews.belongsTo(Users, {
 
 
 
-module.exports = { Users, Reviews, Communities, CommunityUsers, Threads, Posts, Calendars};
+module.exports = { Users, Communities, Reviews, CommunityUsers, Threads, Posts, Calendars};
