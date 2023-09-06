@@ -6,13 +6,12 @@
 
 
         <div class="col-md-6 blog-list">
-            <h3>Posts:</h3>
+            <h3>Replies:</h3>
 
             {{#each posts as |post|}}
             <div class="row mb-2">
-            Title - {{title}}
+            {{body}}
             <br>
-            Body - {{body}}
             </div>
             {{/each}}
         </div>

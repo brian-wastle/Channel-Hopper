@@ -11,7 +11,7 @@
 
       {{#each communities as |communities|}}
       <div class="row mb-2">
-        {{communities.name}}
+        <a href="/community/{{communities.id}}">{{communities.name}}</a>
       </div>
       {{/each}}
     </div>
@@ -25,7 +25,7 @@
 
     {{#each threads as |thread|}}
     <div class="row mb-2">
-      {{thread.subject}}
+      <a href="/threads/{{thread.id}}">{{thread.subject}}</a>
     </div>
     {{/each}}
   </div>
@@ -38,11 +38,11 @@
 
     {{#each reviews as |review|}}
     <div class="row mb-2">
-      {{review.subject}}
+      <a href="/reviews/{{review.id}}">{{review.subject}}</a>
     </div>
     {{/each}}
   </div>
   {{/if}}
 </div>
 
-<script src="./js/dashboard.js"></script>
+{{!-- <script src="./js/dashboard.js"></script> --}}
