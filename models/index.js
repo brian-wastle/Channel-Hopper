@@ -90,4 +90,4 @@ Reviews.belongsTo(Users, {
 
 
 
-module.exports = { Users, Communities, CommunityUsers, Threads, Posts, Calendars, Reviews};
+module.exports = { Users, Reviews, Communities, CommunityUsers, Threads, Posts, Calendars};

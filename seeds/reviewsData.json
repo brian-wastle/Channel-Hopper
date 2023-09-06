@@ -3,19 +3,22 @@
         "community_id": 1,
         "user_id": 1,
         "subject": "test subject1",
-        "body": "review #1"
+        "body": "review #1",
+        "plusones": 5
     },
     {
         "community_id": 1,
         "user_id": 2,
         "subject": "test subject2",
-        "body": "review #2"
+        "body": "review #2",
+        "plusones": 10
     },
     {
         "community_id": 2,
         "user_id": 3,
         "subject": "test subject3",
-        "body": "review #3"
+        "body": "review #3",
+        "plusones": 7
     }
   ]
   

@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const { Users, Communities, CommunityUsers, Threads, Reviews } = require('../models');
+const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../models');
 const withAuth = require('../utils/auth');
 
 
+
+//render the homepage
 router.get('/', async (req, res) => {
   try {
     res.render('login');
@@ -11,6 +13,9 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+
 
 //render the user's profile page
 router.get('/profile', async (req, res) => {
@@ -37,7 +42,98 @@ router.get('/profile', async (req, res) => {
   }
 });
 
+
+
+
+
 //Show a single Review
+
+router.get('/reviews/:id', async (req, res) => {
+  try {
+    // if (req.session.user_id) {
+    // var user = await User.findOne({
+    //   where: {
+    //     id: req.session.user_id,
+    //   },
+    //   attributes: ['name', 'id'], 
+    // });
+    // } else {
+    //   var user;
+    // }
+
+
+
+    // if (user) {
+    //   var currentUserId = user.dataValues.id;
+    // } else {
+    //   var currentUserId = 0;
+    // }
+
+    const reviewData = await Reviews.findByPk(req.params.id, {
+      include: [
+        { 
+          model: Users, 
+          attributes: ['name'] 
+        }, 
+      ],
+    });
+    const reviews = reviewData.get({ plain: true });
+
+    // const reviews = {body:"Fiat", subject:"500", user_id:"white"};
+
+
+
+    console.log(reviews.body);
+    res.render('review', {
+      ...reviews,
+      // logged_in: req.session.logged_in,
+      // current_user_id: currentUserId
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+//get a single thread
+
+router.get('/threads/:id', async (req, res) => {
+  try {
+    // if (req.session.user_id) {
+    // var user = await User.findOne({
+    //   where: {
+    //     id: req.session.user_id,
+    //   },
+    //   attributes: ['name', 'id'], 
+    // });
+    // } else {
+    //   var user;
+    // }
+
+
+
+    // if (user) {
+    //   var currentUserId = user.dataValues.id;
+    // } else {
+    //   var currentUserId = 0;
+    // }
+
+    const threadData = await Threads.findOne({ where: { id: req.params.id } });
+    const thread = threadData.get({ plain: true });
+    console.log(thread)
+    res.render('thread', {
+      ...thread,
+      logged_in: req.session.logged_in,
+      // current_user_id: currentUserId
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 

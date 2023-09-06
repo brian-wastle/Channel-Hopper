@@ -5,21 +5,18 @@
 
 <div class="row mt-4">
   
-
   {{#if threads.length}}
   <div class="col-md-6 blog-list">
     <h3>My Conversations:</h3>
 
     {{#each threads as |thread|}}
     <div class="row mb-2">
-      <div class="col-md-8">
-        {{!-- todo: link each thread to the associated community page --}}
-        {{thread.subject}} 
-      </div>
+      {{thread.subject}}
     </div>
     {{/each}}
   </div>
   {{/if}}
+
 
   {{#if reviews.length}}
   <div class="col-md-6 blog-list">
@@ -27,10 +24,7 @@
 
     {{#each reviews as |review|}}
     <div class="row mb-2">
-      <div class="col-md-8">
-        {{!-- todo: link each review to the associated community page --}}
-        {{review.subject}} 
-      </div>
+      {{review.subject}}
     </div>
     {{/each}}
   </div>

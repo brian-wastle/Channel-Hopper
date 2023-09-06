@@ -33,6 +33,9 @@ Reviews.init(
     body: {
       type: DataTypes.TEXT('medium'),
     },
+    plusones: {
+      type: DataTypes.INTEGER,
+    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
