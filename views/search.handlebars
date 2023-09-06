@@ -1,0 +1,22 @@
+<div>
+    <input type="text" id="searchInput" placeholder="Search for a TV show...">
+    <button id="searchButton">Search</button>
+</div>
+
+<div id="searchResults">
+
+
+    {{#each shows as |obj|}}
+    <div class="tv-show">
+        <h1>{{obj.show.name}}</h1>
+        <img src="{{obj.show.image.medium}}">
+        <p>{{obj.show.summary}}</p>
+       <p> This show is {{obj.show.status}}</p>
+        
+        <p>Airs at {{obj.show.schedule.time}} on {{obj.show.schedule.day}}</p>
+    </div>
+    {{/each}}
+</div>
+
+
+<script src="/js/search.js"></script>
