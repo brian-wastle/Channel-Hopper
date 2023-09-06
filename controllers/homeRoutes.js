@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const {  } = require('../models');
+const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../models');
 const withAuth = require('../utils/auth');
 
 
+
+//render the homepage
 router.get('/', async (req, res) => {
   try {
     res.render('login');
@@ -11,6 +13,148 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+
+
+//render the user's profile page
+router.get('/profile', async (req, res) => {
+  
+  try {
+//get communities
+// TO DO: cannot get current communities, sequelize errors due to associations betweek communityusers table and users table
+    const commData = await Communities.findAll({
+      include: [
+        {
+          model: Users,
+          through: CommunityUsers, // The join table
+          where: { id: 2 }, // Condition for the community
+        },
+      ],
+    });
+console.log('commData');
+console.log(commData);
+    const communities = commData.map((community) => community.get({ plain: true }));
+
+//get all user's threads
+    const threadData = await Threads.findAll({ where: { user_id: 2 } });
+    const threads = threadData.map((thread) => thread.get({ plain: true }));
+//get all user's reviews
+    const reviewData = await Reviews.findAll({ where: { user_id: 2 } });
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+console.log('communities');
+console.log(communities);
+//render profile with threads and reviews data
+    res.render('profile', { 
+      threads, 
+      reviews,
+      communities,
+      // logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
+//Show a single Review
+
+router.get('/reviews/:id', async (req, res) => {
+  try {
+    if (req.session.user_id) {
+    var user = await Users.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+      attributes: ['name', 'id'], 
+    });
+    } else {
+      var user;
+    }
+
+
+
+    if (user) {
+      var currentUserId = user.dataValues.id;
+    } else {
+      var currentUserId = 0;
+    }
+    console.log(req.session)
+    const reviewData = await Reviews.findByPk(req.params.id, {
+      include: [
+        { 
+          model: Users, 
+          attributes: ['name'] 
+        }, 
+      ],
+    });
+    const reviews = reviewData.get({ plain: true });
+
+    console.log(reviews.body);
+
+    res.render('review', {
+      ...reviews,
+      logged_in: req.session.logged_in,
+      current_user_id: currentUserId
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+//get a single thread
+
+router.get('/threads/:id', async (req, res) => {
+  try {
+    if (req.session.user_id) {
+    var user = await Users.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+      attributes: ['name', 'id'], 
+    });
+    } else {
+      var user;
+    }
+
+
+
+    if (user) {
+      var currentUserId = user.dataValues.id;
+    } else {
+      var currentUserId = 0;
+    }
+
+    const threadData = await Threads.findOne({ where: { id: req.params.id } });
+    const thread = threadData.get({ plain: true });
+
+    const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
+      include: {
+        model: Users,
+        required: true
+      }});
+    const posts = postData.map((post) => post.get({ plain: true }));
+    
+    console.log(posts)
+
+    res.render('thread', {
+      ...thread,
+      posts,
+      logged_in: req.session.logged_in,
+      current_user_id: currentUserId
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 

@@ -1,11 +1,12 @@
 const sequelize = require('../config/connection');
-const { Users, Communities, Threads, Posts, CommunityUsers} = require('../models');
+const { Users, Communities, Threads, Posts, Reviews, CommunityUsers} = require('../models');
 
 const userData = require('./userData.json');
 const communityData = require('./communityData.json');
 const threadsData = require('./threadsData.json');
 const postsData = require('./postsData.json');
 const cuData = require('./communityUsersData.json');
+const reviewsData = require('./reviewsData.json')
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -32,6 +33,11 @@ const seedDatabase = async () => {
 
 
   const communityusers = await CommunityUsers.bulkCreate(cuData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  const reviews = await Reviews.bulkCreate(reviewsData, {
     individualHooks: true,
     returning: true,
   });

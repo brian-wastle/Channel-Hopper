@@ -19,8 +19,22 @@ Reviews.init(
         key: 'id',
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+    },
+    subject: {
+      type: DataTypes.STRING,
+    },
     body: {
       type: DataTypes.TEXT('medium'),
+    },
+    plusones: {
+      type: DataTypes.INTEGER,
     },
     date_created: {
       type: DataTypes.DATE,
