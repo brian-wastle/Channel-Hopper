@@ -48,5 +48,25 @@ router.get('/:id', async (req, res) => {
   });
 
 
+  //retrieves all threads associated with a single community 
+
+  router.get('/:id/threads', async (req, res) => {
+    try {
+ 
+      const communityData = await Communities.findOne({ where: { id: req.params.id } });
+      const community = communityData.get({ plain: true });
+
+      const threadData = await Threads.findAll({ where: { community_id: req.params.id } });
+      const threads = threadData.map((thread) => thread.get({ plain: true }));
+  
+      console.log(threads);
+      console.log(community)
+        res.render('conversations', {threads, community, logged_in: req.session.logged_in })
+      
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 module.exports = router;
