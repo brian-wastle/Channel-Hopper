@@ -20,6 +20,11 @@ const getDashboard = async () => {
     }
   };
   
+  $(document).ready(function() {
+    $('#gotoSearch').on('click', function() {
+        window.location.href = '/search';
+    });
+});
 
 document.querySelector('#homepage').addEventListener('click', getHomepage);
 if(document.getElementById('dashboard')){
