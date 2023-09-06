@@ -8,7 +8,8 @@
   {{!-- <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css"> --}}
 </head>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
@@ -16,6 +17,7 @@
         <a href="/">Group Project 2</a>
       </h1>
       <nav>
+        <button id="gotoSearch">Go to Search</button>
         <!-- Conditionally render login or logout links -->
         <button class="no-button" id="homepage">home</button>
         {{#if logged_in}}
@@ -34,14 +36,16 @@
       
     </footer>
   </div>
-
+ 
+   
+    <script src="/js/main.js"></script>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{else}}
   <script src="/js/login.js"></script>
   {{/if}}
-  <script src="/js/main.js"></script>
+ 
 </body>
 
 </html>

@@ -1,0 +1,11 @@
+<h1>{{community.name}}</h1>
+
+  <div class="col-md-6 blog-list">
+    <h3>Community Conversations:</h3>
+
+    {{#each threads as |threads|}}
+    <div class="row mb-2">
+      <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
+    </div>
+    {{/each}}
+  </div>
