@@ -13,16 +13,23 @@
     <div class="row mb-2">
       <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
     </div>
+    <div class="row mb-2">
+      <a href="{{id}}/threads">Click here for all conversations about this show.</a>
+    </div>
     {{/each}}
   </div>
 
   {{#if reviews.length}}
   <div class="col-md-6 blog-list">
+
     <h3>Top Reviews:</h3>
 
     {{#each reviews as |review|}}
     <div class="row mb-2">
       <a href="/reviews/{{review.id}}">{{review.subject}}</a>
+    </div>
+    <div class="row mb-2">
+      <a href="{{id}}/reviews">Click here for all reviews about this show.</a>
     </div>
     {{/each}}
   </div>

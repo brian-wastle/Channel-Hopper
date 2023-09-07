@@ -83,6 +83,25 @@ router.post('/', withAuth, async (req, res) => {
     }
   });
 
+  //retrieves all reviews for a single community
+router.get('/:id/reviews', async (req, res) => {
+  try {
+
+    const communityData = await Communities.findOne({ where: { id: req.params.id } });
+    const community = communityData.get({ plain: true });
+
+    const reviewData = await Reviews.findAll({ where: { community_id: req.params.id } });
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+
+    console.log(reviews);
+    console.log(community);
+      res.render('review', {reviews, community, logged_in: req.session.logged_in })
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 //takes user to new thread page
 router.get('/:id/newthread', async (req, res) => {
