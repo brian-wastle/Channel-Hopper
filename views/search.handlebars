@@ -7,13 +7,18 @@
 
 
     {{#each shows as |obj|}}
+    {{log obj}}
     <div class="tv-show">
-        <h1>{{obj.show.name}}</h1>
-        <img src="{{obj.show.image.medium}}">
-        <p>{{obj.show.summary}}</p>
-       <p> This show is {{obj.show.status}}</p>
+        <h1>{{obj.name}}</h1>
+        <img src="{{obj.image.medium}}" alt="We could not find an image for this show!">
+        {{{obj.summary}}}
+       
+       
+       
+       {{#each obj.messages as |message|}}
+       <p>{{message}}</p>
+       {{/each}}
         
-        <p>Airs at {{obj.show.schedule.time}} on {{obj.show.schedule.day}}</p>
     </div>
     {{/each}}
 </div>
