@@ -2,49 +2,41 @@
     {
         "thread_id": "1",
         "user_id": "1",
-        "title": "test1",
         "body": "The first post"
     },
     {
         "thread_id": "1",
         "user_id": "2",
-        "title": "test2",
         "body": "The second post"
     },
     {
         "thread_id": "2",
         "user_id": "1",
-        "title": "test3",
         "body": "The first post"
     },
     {
         "thread_id": "2",
         "user_id": "3",
-        "title": "test4",
         "body": "The second post"
     },
     {
         "thread_id": "3",
         "user_id": "3",
-        "title": "test5",
         "body": "The first post"
     },
     {
         "thread_id": "3",
         "user_id": "1",
-        "title": "test6",
         "body": "The second post"
     },
     {
         "thread_id": "4",
         "user_id": "3",
-        "title": "test7",
         "body": "The first post"
     },
     {
         "thread_id": "4",
         "user_id": "2",
-        "title": "test8",
         "body": "The second post"
     }
   ]
