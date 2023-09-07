@@ -48,6 +48,21 @@ router.get('/:id', async (req, res) => {
   });
 
 
+//create a new community
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newCommunity = await Communities.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newCommunity);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
   //retrieves all threads associated with a single community 
 
   router.get('/:id/threads', async (req, res) => {
