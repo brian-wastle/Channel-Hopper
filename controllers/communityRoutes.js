@@ -80,7 +80,7 @@ router.get('/:id/reviews', async (req, res) => {
 
     console.log(reviews);
     console.log(community);
-      res.render('conversations', {reviews, community, logged_in: req.session.logged_in })
+      res.render('review', {reviews, community, logged_in: req.session.logged_in })
     
   } catch (err) {
     res.status(500).json(err);
