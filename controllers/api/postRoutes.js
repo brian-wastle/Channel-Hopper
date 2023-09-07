@@ -4,12 +4,11 @@ const withAuth = require('../../utils/auth');
 
 
 //create a post on thread ":id", so the :id being passed as a parameter refers to the thread id, not a post id
-router.post('/:id', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
       const newPost = await Posts.create({
         ...req.body,
         user_id: req.session.user_id,
-        thread_id: req.params.id
       });
 
       res.status(200).json(newPost);

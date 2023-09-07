@@ -1,29 +1,43 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const threadName = document.querySelector('#thread-name').value.trim();
-    const postBody = document.querySelector('#post-body').value.trim();
+    const subject = document.querySelector('#thread-name').value.trim();
+    const bodytest = document.querySelector('#post-body').value.trim();
   
   
-    //create a new blog
-    if (threadName && postBody) {
-      const response = await fetch(`/api/threads`, {
+    //create a new thread
+    if (subject && bodytest) {
+//grabs the community_id from the url
+      const tempUrl = window.location.href;
+      const tempParts = tempUrl.split('/');
+      const community_id = parseInt(tempParts[tempParts.length - 2], 10);
+      
+      const threadResponse = await fetch(`/api/threads/`, {
         method: 'POST',
-        body: JSON.stringify({ threadName }),
+        body: JSON.stringify({ subject, community_id }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
-      if (response.ok) {
-        document.location.replace('/dashboard');
+      if (threadResponse.ok) {
+
+        const latestThread = await fetch(`/api/threads/threadid`);
+        console.log(latestThread)
+        const postResponse = await fetch(`/api/posts/`, {
+          method: 'POST',
+          body: JSON.stringify({ bodytest, latestThread }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
       } else {
-        alert('Failed to create blog');
+        alert('Failed to create thread');
       }
     }
   };
 
   
 document
-.querySelector('.new-project-form')
+.querySelector('.new-thread-form')
 .addEventListener('submit', newFormHandler);
