@@ -84,4 +84,18 @@ router.post('/', withAuth, async (req, res) => {
   });
 
 
+//takes user to new thread page
+router.get('/:id/newthread', async (req, res) => {
+  try {
+
+    res.render('newThread', { 
+      logged_in: req.session.logged_in 
+    });
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 module.exports = router;

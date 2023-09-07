@@ -1,15 +1,15 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const name = document.querySelector('#project-name').value.trim();
-    const description = document.querySelector('#project-desc').value.trim();
+    const threadName = document.querySelector('#thread-name').value.trim();
+    const postBody = document.querySelector('#post-body').value.trim();
   
   
     //create a new blog
-    if (name && description) {
-      const response = await fetch(`/api/blogs`, {
+    if (threadName && postBody) {
+      const response = await fetch(`/api/threads`, {
         method: 'POST',
-        body: JSON.stringify({ name, description }),
+        body: JSON.stringify({ threadName }),
         headers: {
           'Content-Type': 'application/json',
         },
