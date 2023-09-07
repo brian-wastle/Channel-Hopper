@@ -15,6 +15,27 @@ Communities.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+    },
+    summary: {
+      type: DataTypes.TEXT,
+    },
+    status: {
+      type: DataTypes.STRING,
+    },
+    premiere: {
+      type: DataTypes.DATEONLY,
+    },
+    ended: {
+      type: DataTypes.DATEONLY,
+    },
+    runtime: {
+      type: DataTypes.INTEGER,
+    },
+    officialSite: {
+      type: DataTypes.STRING,
+    },
   },
   {
     sequelize,
