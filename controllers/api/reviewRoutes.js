@@ -26,7 +26,6 @@ router.put('/:id/plusone', withAuth, async (req, res) => {
         if (!plusOnesValue) {
         return res.status(404).json({ error: 'Review not found' });
         }
-        console.log(plusOnesValue)
         // Increment the value by 1
         plusOnesValue.plusones += 1;
 

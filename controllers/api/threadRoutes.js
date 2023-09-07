@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   
       // access first item in the array returned by Sequelize
       const thread = threadData[0];
-  
+  // console.log(thread)
       if (thread) {
         res.json(thread);
       } else {

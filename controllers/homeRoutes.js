@@ -158,8 +158,6 @@ router.get('/threads/:id', async (req, res) => {
         required: true
       }});
     const posts = postData.map((post) => post.get({ plain: true }));
-    
-    console.log(posts)
 
     res.render('thread', {
       ...thread,
