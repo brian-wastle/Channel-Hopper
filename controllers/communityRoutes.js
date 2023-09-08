@@ -28,11 +28,13 @@ router.get('/:id', async (req, res) => {
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
     const community = communityData.get({ plain: true });
 
-    const threadData = await Threads.findAll({ where: { id: community.id } });
-    const threads = threadData.map((thread) => thread.get({ plain: true }));
+    const threadData = await Threads.findAll({ where: { community_id: community.id } });
+    const threadsArray = threadData.slice(0, 3);
+    const threads = threadsArray.map((thread) => thread.get({ plain: true }));
 
-    const reviewData = await Reviews.findAll({ where: { id: community.id } });
-    const reviews = reviewData.map((thread) => thread.get({ plain: true }));
+    const reviewData = await Reviews.findAll({ where: { community_id: community.id } });
+    const reviewsArray = reviewData.slice(0, 3);
+    const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
     res.render('community', {
     ...community,

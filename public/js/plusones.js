@@ -18,7 +18,7 @@ const plusOneHandler = async (event) => {
 
         document.location.reload();
     } else {
-        alert('Failed to add plusOne');
+
     }
 };
 
