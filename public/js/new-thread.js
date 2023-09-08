@@ -11,8 +11,7 @@ const newFormHandler = async (event) => {
       const tempUrl = window.location.href;
       const tempParts = tempUrl.split('/');
       const community_id = parseInt(tempParts[tempParts.length - 2], 10);
-      console.log(community_id);
-      console.log(subject);
+
       const threadResponse = await fetch(`/api/threads/`, {
         method: 'POST',
         body: JSON.stringify({ subject, community_id }),
@@ -27,11 +26,10 @@ const newFormHandler = async (event) => {
           .then(response => response.json())
           .then(data => {
             let thread_id = data.thread_id;
-            return thread_id; // Output: "Hello from the server!"
+            return thread_id;
           })
         
           .then(thread_id => { 
-            console.log(JSON.stringify({ body, thread_id }))
             fetch(`/api/posts/`, {
             method: 'POST',
             body: JSON.stringify({ body, thread_id }),

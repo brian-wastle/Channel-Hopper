@@ -1,36 +1,23 @@
 <h1>{{community.name}}</h1>
 
-  <div class="col-md-6 blog-list">
-    <h3>Community Conversations:</h3>
+<div class="col-md-6">
+  <h3>Create a New Conversation:</h3>
 
-    {{#each threads as |threads|}}
-    <div class="row mb-2">
-      <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
+  <form class="form new-thread-form">
+    <div class="form-group">
+      <label for="thread-name">Thread Name:</label>
+      <br>
+      <input class="form-input" type="text" id="thread-name" name="thread-name" />
     </div>
-    {{/each}}
+    <div class="form-group">
+      <label for="post-body">Enter Your First Comment:</label>
+      <br>
+      <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Create Conversation</button>
+    </div>
+  </form>
+</div>
 
-    <a href="http://">Start a new conversation</a>
-  </div>
-
-
-  <div class="col-md-6">
-    <h3>Create a New Conversation:</h3>
-
-    <form class="form new-thread-form">
-      <div class="form-group">
-        <label for="thread-name">Thread Name:</label>
-        <br>
-        <input class="form-input" type="text" id="thread-name" name="thread-name" />
-      </div>
-      <div class="form-group">
-        <label for="post-body">Enter Your First Comment:</label>
-        <br>
-        <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
-
-  <script src="/js/new-thread.js"></script>
+<script src="/js/new-thread.js"></script>

@@ -74,8 +74,6 @@ router.post('/', withAuth, async (req, res) => {
       const threadData = await Threads.findAll({ where: { community_id: req.params.id } });
       const threads = threadData.map((thread) => thread.get({ plain: true }));
   
-      console.log(threads);
-      console.log(community)
         res.render('conversations', {threads, community, logged_in: req.session.logged_in })
       
     } catch (err) {
@@ -93,9 +91,7 @@ router.get('/:id/reviews', async (req, res) => {
     const reviewData = await Reviews.findAll({ where: { community_id: req.params.id } });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
 
-    console.log(reviews);
-    console.log(community);
-      res.render('review', {reviews, community, logged_in: req.session.logged_in })
+      res.render('reviews', {reviews, community, logged_in: req.session.logged_in })
     
   } catch (err) {
     res.status(500).json(err);
@@ -116,5 +112,17 @@ router.get('/:id/newthread', async (req, res) => {
   }
 });
 
+//takes user to new review page
+router.get('/:id/newreview', async (req, res) => {
+  try {
+
+    res.render('newreview', { 
+      logged_in: req.session.logged_in 
+    });
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

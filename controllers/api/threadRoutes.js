@@ -24,14 +24,13 @@ router.post('/', async (req, res) => {
     try {
       const threadData = await Threads.findAll({
         attributes: [
-          [Sequelize.fn('max', Sequelize.col('id')), 'thread_id'], // Alias it as 'maxId'
+          [Sequelize.fn('max', Sequelize.col('id')), 'thread_id']
         ],
         raw: true,
       });
-  
-      // access first item in the array returned by Sequelize
+      // Sequelize sends back array
       const thread = threadData[0];
-  // console.log(thread)
+
       if (thread) {
         res.json(thread);
       } else {

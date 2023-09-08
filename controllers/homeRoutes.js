@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../models');
+const { Users, Communities, Reviews, Threads, Posts, CommunityUsers, Plusones } = require('../models');
+const Sequelize = require('sequelize');
 const withAuth = require('../utils/auth');
 
 
@@ -60,7 +61,6 @@ router.get('/profile', withAuth, async (req, res) => {
       ],
     });
     const communities = commData.map((community) => community.get({ plain: true }));
-console.log(currentUserId)
 //get all user's threads
     const threadData = await Threads.findAll({ where: { user_id: currentUserId } });
     const threads = threadData.map((thread) => thread.get({ plain: true }));
@@ -104,21 +104,41 @@ router.get('/reviews/:id', async (req, res) => {
       var currentUserId = 0;
     }
 
-
-    const reviewData = await Reviews.findByPk(req.params.id, {
+    let reviewData = await Reviews.findByPk(req.params.id, {
       include: [
-        { 
-          model: Users, 
-          attributes: ['name'] 
-        }, 
+        {
+          model: Users,
+          attributes: ['name'],
+        },
+        {
+          model: Communities,
+          where: { id: Sequelize.col('Reviews.community_id') }, 
+          required: true,
+        },
       ],
     });
     const reviews = reviewData.get({ plain: true });
 
+    //check to see if a user has already given a plusOne on a review
+
+    const plusOneData = await Plusones.findOne({
+      where: {
+        user_id: currentUserId,
+        review_id: req.params.id,
+      },
+    });
+    
+    if (plusOneData) {
+      plusOneRender = false;
+    } else {
+      plusOneRender = true;
+    }
+
     res.render('review', {
       ...reviews,
       logged_in: req.session.logged_in,
-      current_user_id: currentUserId
+      current_user_id: currentUserId,
+      plus_one_render: plusOneRender
     });
   } catch (err) {
     res.status(500).json(err);
