@@ -106,8 +106,6 @@ console.log(reviewsCommunityTwo)
 });
 
 
-
-
 //render the user's profile page
 router.get('/profile', withAuth, async (req, res) => {
   

@@ -28,12 +28,10 @@ router.post('/', async (req, res) => {
         ],
         raw: true,
       });
-      
       // Sequelize sends back array
       const thread = threadData[0];
-
       if (thread) {
-        res.redirect(`threads/${thread}`); //this needs to be updated
+        res.json(thread);
       } else {
         res.status(404).json({ message: 'No threads found' });
       }

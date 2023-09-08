@@ -38,6 +38,16 @@ const newFormHandler = async (event) => {
             },
           })
           })
+          await fetch(`/api/threads/threadid`)
+          .then(response => response.json())
+          .then(data => {
+            let thread_id = data.thread_id;
+            console.log(thread_id)
+            return thread_id;
+          })
+          .then(thread_id => {
+            window.location.replace(`/threads/${thread_id}`)
+          })
       } else {
         alert('Failed to create thread');
       }
