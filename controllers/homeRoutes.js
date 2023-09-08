@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   try {
     //get the two most recent communities
     let communityData = await Communities.findAll({
-      order: [['id', 'DESC']], // Order by 'id' column in descending order
+      order: [['id', 'ASC']], // Order by 'id' column in descending order
     });
     
     const communityOne = communityData.slice(0, 1);
