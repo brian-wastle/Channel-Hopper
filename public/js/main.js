@@ -31,4 +31,3 @@ if(document.getElementById('dashboard')){
   document.querySelector('#dashboard').addEventListener('click', getDashboard);
 }
 
-  

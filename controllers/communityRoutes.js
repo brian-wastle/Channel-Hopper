@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../models');
+const Sequelize = require('sequelize');
 const withAuth = require('../utils/auth');
 
 
@@ -27,12 +28,35 @@ router.get('/:id', async (req, res) => {
   
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
     const community = communityData.get({ plain: true });
-
-    const threadData = await Threads.findAll({ where: { community_id: community.id } });
+;
+//finds the most popular threads based on the number of posts on that thread and returns the top 3
+    const threadData = await Threads.findAll({
+      attributes: [
+        'id',
+        'subject',
+        'date_created',
+        [Sequelize.literal('(SELECT COUNT(*) FROM posts WHERE posts.thread_id = threads.id)'), 'post_count'],
+      ],
+      include: [
+        {
+          model: Posts,
+          attributes: [],
+          required: false, // Use 'required: false' to perform a LEFT JOIN
+        },
+      ],
+      where: { community_id: community.id }, // Replace 2 with the actual community ID value
+      group: ['Threads.id'],
+      order: [[Sequelize.literal('post_count'), 'DESC']],
+    });
     const threadsArray = threadData.slice(0, 3);
     const threads = threadsArray.map((thread) => thread.get({ plain: true }));
 
-    const reviewData = await Reviews.findAll({ where: { community_id: community.id } });
+//finds the most popular reviews based on the number of plusones and returns the top 3
+
+    const reviewData = await Reviews.findAll({
+      order: [['plusones', 'DESC']],
+      where: { community_id: community.id }
+    });
     const reviewsArray = reviewData.slice(0, 3);
     const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
@@ -49,39 +73,41 @@ router.get('/:id', async (req, res) => {
     }
   });
 
-  router.get('/name/:api_id', async (req, res) => {
+  router.post('/name/:api_id', async (req, res) => {
     console.log(req.params.name)
     try {
-      if (req.session.user_id) {
-      var user = await Users.findOne({
-        where: {
-          id: req.session.user_id,
-        },
-        attributes: ['name', 'id'], 
-      });
-      } else {
-        var user;
-      }
+      // if (req.session.user_id) {
+      // var user = await Users.findOne({
+      //   where: {
+      //     id: req.session.user_id,
+      //   },
+      //   attributes: ['name', 'id'], 
+      // });
+      // } else {
+      //   var user;
+      // }
 
-      if (user) {
-        var currentUserId = user.dataValues.id;
-      } else {
-        var currentUserId = 0;
-      }
+      // if (user) {
+      //   var currentUserId = user.dataValues.id;
+      // } else {
+      //   var currentUserId = 0;
+      // }
   
     let communityData = await Communities.findOne({ where: { api_id: req.params.api_id } });
     console.log(communityData)
     if (communityData){
       res.redirect(`/community/${communityData.id}`)
     }
-    if(communityData === null){
+    if(communityData === null){ //forward to the post route to create a new community
+
+      //res.redirect('') to post endpoint
 
       //need id for community
       
       let response = await fetch(`https://api.tvmaze.com/shows/${req.params.api_id}`)
       let shows = await response.json()
       console.log(shows)
-      let show = showEntry.show;
+      // let show = showEntry.show;
       let [result] = shows.map(showEntry => {
       let show = showEntry.show;
       let result = {
@@ -98,6 +124,7 @@ router.get('/:id', async (req, res) => {
       };
       return result;
     })
+    console.log(result)
     communityData = await Communities.create(result)
     const community = communityData.get({ plain: true });
 
@@ -107,13 +134,13 @@ router.get('/:id', async (req, res) => {
     const reviewData = await Reviews.findAll({ where: { id: community.id } });
     const reviews = reviewData.map((thread) => thread.get({ plain: true }));
 
-    res.render('community', {
-    ...community,
-    threads,
-    reviews,
-    logged_in: req.session.logged_in,
-    current_user_id: currentUserId
-    });
+    // res.render('community', {
+    // ...community,
+    // threads,
+    // reviews,
+    // logged_in: req.session.logged_in,
+    // current_user_id: currentUserId
+    // });
   
     }} catch (err) {
       console.log(err)
