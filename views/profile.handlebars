@@ -1,22 +1,39 @@
-<div class="mx-12"> 
-  {{#if communities.length}}
-    <h3>My Communities:</h3>
-    {{#each communities as |community|}}
-      <a href="/community/{{community.id}}">{{community.name}}</a><br>
-    {{/each}}
-  {{/if}}
+<div class="flex justify-center items-center w-screen h-screen my-6">
+  <div>
+    <div>
+      {{#if communities.length}}
+      <div>
+        <h4>My Communities:</h4>
+        {{#each communities as |community|}}
+        <div>
+          <a href="/community/{{community.id}}">{{community.name}}</a>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
 
-  {{#if threads.length}}
-    <h3>My Conversations:</h3>
-    {{#each threads as |thread|}}
-      <a href="/threads/{{thread.id}}">{{thread.subject}}</a><br>
-    {{/each}}
-  {{/if}}
+      {{#if threads.length}}
+      <div>
+        <h3>My Conversations:</h3>
+        {{#each threads as |thread|}}
+        <div>
+          <a href="/threads/{{thread.id}}">{{thread.subject}}</a>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
 
-  {{#if reviews.length}}
-    <h3>My Reviews:</h3>
-    {{#each reviews as |review|}}
-      <a href="/reviews/{{review.id}}">{{review.subject}}</a><br>
-    {{/each}}
-  {{/if}}
+      {{#if reviews.length}}
+      <div>
+        <h3>My Reviews:</h3>
+        {{#each reviews as |review|}}
+        <div>
+          <a href="/reviews/{{review.id}}">{{review.subject}}</a>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
 </div>
+
