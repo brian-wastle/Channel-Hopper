@@ -4,17 +4,25 @@
 </div>
 
 <div>
-    <h2>Trending Shows</h2>
+    <h2>Trending Communities</h2>
 </div>
 
 <div>
-    <h3>Show1 - link to community</h3>
-    <div>link to reviews</div>
-    <div>latest thread</div>
-    <div>posts from latest thread</div>
-    <div>thread author name and date</div>
+    <h3>{{communitiesOne.[0].name}}</h3>
+    <p>Latest Thread:</p>
+    <div>{{threadsCommunityOne.[0].subject}}</div>
+    <p>Latest Review:</p>
+    <div>{{reviewsCommunityOne.subject}}</div>
+</div>
+
+<div>
+    <h3>{{communitiesTwo.[0].name}}</h3>
+    <p>Latest Thread:</p>
+    <div>{{threadsCommunityTwo.[0].subject}}</div>
+    <p>Latest Review:</p>
+    <div>{{reviewsCommunityTwo.subject}}</div>
 </div>
 
 
 
-{{!-- <script src="./js/script.js"></script> --}}
+<script src="/js/homepage.js"></script>

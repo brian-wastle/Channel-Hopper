@@ -8,13 +8,70 @@ const withAuth = require('../utils/auth');
 //render the homepage
 router.get('/', async (req, res) => {
   try {
-    //get the show with the most threads
+    //get the two most recent communities
+    let communityData = await Communities.findAll({
+      order: [['id', 'DESC']], // Order by 'id' column in descending order
+    });
+    
+    const communityOne = communityData.slice(0, 1);
+    const communitiesOne = communityOne.map((community) => community.get({ plain: true }));
 
-    //get the threads with the most posts, include author name
+    communityDataTwo = await Communities.findAll({
+      order: [['id', 'DESC']], // Order by 'id' column in descending order
+    });
+    const communityTwo = communityDataTwo.slice(1, 2);
+    const communitiesTwo = communityTwo.map((community) => community.get({ plain: true }));
 
+    //find the threads from community 1
+    const threadDataOne = await Threads.findAll({
+      where: {
+        community_id: communitiesOne[0].id,
+      },
+      order: [['id', 'DESC']],
+    });
+    const threadsCommunityOne = threadDataOne.map((thread) => thread.get({ plain: true }));
 
+    //find the threads from community 2
+    const threadDataTwo = await Threads.findAll({
+      where: {
+        community_id: communitiesTwo[0].id,
+      },
+      order: [['id', 'DESC']],
+    });
+    const threadsCommunityTwo = threadDataTwo.map((thread) => thread.get({ plain: true }));
+
+//find the reviews from community 1
+    const reviewDataOne = await Reviews.findOne({
+      where: {
+        community_id: communitiesOne[0].id,
+      },
+      order: [['id', 'DESC']],
+      limit: 1,
+    });
+    
+    const reviewsCommunityOne = reviewDataOne.get({ plain: true });
+
+    //find the reviews from community 2
+    const reviewDataTwo = await Reviews.findOne({
+      where: {
+        community_id: communitiesTwo[0].id,
+      },
+      order: [['id', 'DESC']],
+      limit: 1,
+    });
+    const reviewsCommunityTwo = reviewDataTwo.get({ plain: true });
+// console.log(threadsCommunityOne)
+// console.log(threadsCommunityTwo)
+console.log(reviewsCommunityOne)
+// console.log(reviewsCommunityTwo)
 
     res.render('homepage', {
+      communitiesOne,
+      communitiesTwo,
+      threadsCommunityOne,
+      threadsCommunityTwo,
+      reviewsCommunityOne,
+      reviewsCommunityTwo,
       logged_in: req.session.logged_in,
     });
     
@@ -78,9 +135,6 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
-
 
 
 //Show a single Review
