@@ -67,6 +67,18 @@ Threads.belongsTo(Communities, {
 });
 
 
+//users/ threads
+Users.hasMany(Threads, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Threads.belongsTo(Users, {
+  foreignKey: 'user_id'
+});
+
+
+
 //threads/ posts
 Threads.hasMany(Posts, {
   foreignKey: 'thread_id',

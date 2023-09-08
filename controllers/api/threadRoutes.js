@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
       const thread = threadData[0];
 
       if (thread) {
-        res.json(thread);
+        res.redirect(`threads/${thread}`); //this needs to be updated
       } else {
         res.status(404).json({ message: 'No threads found' });
       }

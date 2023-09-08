@@ -8,9 +8,9 @@ const withAuth = require('../utils/auth');
 //render the homepage
 router.get('/', async (req, res) => {
   try {
-    //get the two most recent communities
+    // get the two most recent communities
     let communityData = await Communities.findAll({
-      order: [['id', 'DESC']], // Order by 'id' column in descending order
+      order: [['id', 'ASC']], // Order by 'id' column in descending order
     });
     
     const communityOne = communityData.slice(0, 1);
@@ -23,11 +23,17 @@ router.get('/', async (req, res) => {
     const communitiesTwo = communityTwo.map((community) => community.get({ plain: true }));
 
     //find the threads from community 1
+
+      
     const threadDataOne = await Threads.findAll({
       where: {
         community_id: communitiesOne[0].id,
       },
       order: [['id', 'DESC']],
+      include: {
+        model: Users,
+        attributes: ['name'], 
+      },
     });
     const threadsCommunityOne = threadDataOne.map((thread) => thread.get({ plain: true }));
 
@@ -37,6 +43,10 @@ router.get('/', async (req, res) => {
         community_id: communitiesTwo[0].id,
       },
       order: [['id', 'DESC']],
+      include: {
+        model: Users,
+        attributes: ['name'], 
+      },
     });
     const threadsCommunityTwo = threadDataTwo.map((thread) => thread.get({ plain: true }));
 
@@ -47,6 +57,10 @@ router.get('/', async (req, res) => {
       },
       order: [['id', 'DESC']],
       limit: 1,
+      include: {
+        model: Users,
+        attributes: ['id','name'], 
+      },
     });
     
     const reviewsCommunityOne = reviewDataOne.get({ plain: true });
@@ -58,12 +72,16 @@ router.get('/', async (req, res) => {
       },
       order: [['id', 'DESC']],
       limit: 1,
+      include: {
+        model: Users,
+        attributes: ['id','name'], 
+      },
     });
     const reviewsCommunityTwo = reviewDataTwo.get({ plain: true });
 // console.log(threadsCommunityOne)
 // console.log(threadsCommunityTwo)
 console.log(reviewsCommunityOne)
-// console.log(reviewsCommunityTwo)
+console.log(reviewsCommunityTwo)
 
     res.render('homepage', {
       communitiesOne,
