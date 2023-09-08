@@ -30,7 +30,6 @@ router.post('/', async (req, res) => {
       });
       // Sequelize sends back array
       const thread = threadData[0];
-
       if (thread) {
         res.json(thread);
       } else {

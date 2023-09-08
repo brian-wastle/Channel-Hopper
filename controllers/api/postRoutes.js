@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newPost);
+    res.redirect('/profile');
   } catch (err) {
     res.status(400).json(err);
   }
@@ -28,7 +28,7 @@ router.post('/:id', async (req, res) => {
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newPost);
+    res.status(200).json('its a miss');
   } catch (err) {
     res.status(400).json(err);
   }
