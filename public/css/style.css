@@ -6,6 +6,15 @@ header, .project:not(:last-child) {
 
 }
 
+nav {
+  background-color: #DEE2E6;
+}
+
+body {
+  background-color: #ADB5BD;
+  min-height: 100vh;
+}
+
 header {
   background-color: #8abbdb;
 }
@@ -48,4 +57,56 @@ textarea {
   box-sizing: border-box;
 
   width: 100%;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 100px;
+  margin-left: 60px;
+
+}
+
+.login-button {
+  margin-top: 120px;
+}
+
+.my-communities {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  background-color: #F8F9FA;
+  width: 300px;
+  text-align: center;
+}
+
+
+.my-conversations {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  background-color: #F8F9FA;
+  width: 300px;
+  text-align: center;
+}
+
+.my-reviews {
+    display: flex;
+    flex-flow: column wrap;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    line-height: 200%;
+    box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+    background-color: #F8F9FA;
+    width: 300px;
+    text-align: center;
 }

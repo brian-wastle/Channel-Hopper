@@ -41,6 +41,6 @@ document
 
 
 
-  document
-    .querySelector('#sign-up')
-    .addEventListener('click', signupButtonHandler);
+  // document
+  //   .querySelector('#sign-up')
+  //   .addEventListener('click', signupButtonHandler);
