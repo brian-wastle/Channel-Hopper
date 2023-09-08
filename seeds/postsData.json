@@ -1,43 +1,242 @@
 [
     {
-        "thread_id": "1",
-        "user_id": "1",
-        "body": "The first post"
+        "thread_id": 1,
+        "user_id": 1,
+        "body": "I can't get enough of 'The Simpsons' humor!"
     },
     {
-        "thread_id": "1",
-        "user_id": "2",
-        "body": "The second post"
+        "thread_id": 1,
+        "user_id": 2,
+        "body": "The characters in 'The Simpsons' are so iconic."
     },
     {
-        "thread_id": "2",
-        "user_id": "1",
-        "body": "The first post"
+        "thread_id": 2,
+        "user_id": 1,
+        "body": "Bart's pranks always make me laugh."
     },
     {
-        "thread_id": "2",
-        "user_id": "3",
-        "body": "The second post"
+        "thread_id": 2,
+        "user_id": 3,
+        "body": "Marge Simpson is such a patient mother."
     },
     {
-        "thread_id": "3",
-        "user_id": "3",
-        "body": "The first post"
+        "thread_id": 3,
+        "user_id": 3,
+        "body": "I've been watching 'The Simpsons' for years, and it's still hilarious."
     },
     {
-        "thread_id": "3",
-        "user_id": "1",
-        "body": "The second post"
+        "thread_id": 3,
+        "user_id": 1,
+        "body": "The satire in 'The Simpsons' is on point."
     },
     {
-        "thread_id": "4",
-        "user_id": "3",
-        "body": "The first post"
+        "thread_id": 4,
+        "user_id": 3,
+        "body": "Ned Flanders' positivity is infectious."
     },
     {
-        "thread_id": "4",
-        "user_id": "2",
-        "body": "The second post"
+        "thread_id": 4,
+        "user_id": 2,
+        "body": "I love the classic 'D'oh!' moments."
+    },
+    {
+        "thread_id": 5,
+        "user_id": 2,
+        "body": "Homer Simpson is the king of sitcom dads."
+    },
+    {
+        "thread_id": 5,
+        "user_id": 1,
+        "body": "Lisa's intelligence makes her stand out."
+    },
+    {
+        "thread_id": 1,
+        "user_id": 1,
+        "body": "Who's your favorite character in 'The Simpsons'?"
+    },
+    {
+        "thread_id": 2,
+        "user_id": 2,
+        "body": "I've lost count of how many times I've watched 'The Simpsons'."
+    },
+    {
+        "thread_id": 3,
+        "user_id": 3,
+        "body": "The Simpsons family feels like a part of my own family."
+    },
+    {
+        "thread_id": 4,
+        "user_id": 2,
+        "body": "Sideshow Bob is one of the best recurring villains."
+    },
+    {
+        "thread_id": 5,
+        "user_id": 3,
+        "body": "The Treehouse of Horror episodes are always a treat."
+    },
+    {
+        "thread_id": 6,
+        "user_id": 1,
+        "body": "I'm still amazed at how 'The Simpsons' stays relevant."
+    },
+    {
+        "thread_id": 6,
+        "user_id": 3,
+        "body": "Bart's skateboard skills are legendary."
+    },
+    {
+        "thread_id": 5,
+        "user_id": 1,
+        "body": "I'll never forget the 'Monorail' episode!"
+    },
+    {
+        "thread_id": 6,
+        "user_id": 2,
+        "body": "Krusty the Clown's antics always make me laugh."
+    },
+    {
+        "thread_id": 4,
+        "user_id": 1,
+        "body": "What's your favorite 'Simpsons' episode?"
+    },
+    {
+        "thread_id": 3,
+        "user_id": 2,
+        "body": "I appreciate the social commentary in 'The Simpsons'."
+    },
+    {
+        "thread_id": 2,
+        "user_id": 1,
+        "body": "The opening couch gags are so creative!"
+    },
+    {
+        "thread_id": 1,
+        "user_id": 3,
+        "body": "I've grown up with 'The Simpsons', and it's a classic."
+    },
+    {
+        "thread_id": 6,
+        "user_id": 2,
+        "body": "I can quote 'The Simpsons' in my sleep!"
+    },
+    {
+        "thread_id": 7,
+        "user_id": 1,
+        "body": "I can't get enough of 'Breaking Bad'!"
+    },
+    {
+        "thread_id": 7,
+        "user_id": 2,
+        "body": "Walter White's character development is amazing."
+    },
+    {
+        "thread_id": 8,
+        "user_id": 1,
+        "body": "Gus Fring is one of the most intriguing villains in TV history."
+    },
+    {
+        "thread_id": 8,
+        "user_id": 3,
+        "body": "The tension in 'Breaking Bad' is off the charts."
+    },
+    {
+        "thread_id": 9,
+        "user_id": 3,
+        "body": "Jesse Pinkman's journey is both heart-wrenching and compelling."
+    },
+    {
+        "thread_id": 9,
+        "user_id": 1,
+        "body": "Hank Schrader's detective skills are top-notch."
+    },
+    {
+        "thread_id": 10,
+        "user_id": 3,
+        "body": "Saul Goodman adds a unique humor to the series."
+    },
+    {
+        "thread_id": 10,
+        "user_id": 2,
+        "body": "Mike Ehrmantraut is the epitome of coolness."
+    },
+    {
+        "thread_id": 11,
+        "user_id": 2,
+        "body": "The moral ambiguity of 'Breaking Bad' characters is fascinating."
+    },
+    {
+        "thread_id": 11,
+        "user_id": 1,
+        "body": "I have a question... Who's your favorite 'Breaking Bad' character?"
+    },
+    {
+        "thread_id": 12,
+        "user_id": 3,
+        "body": "The cinematography in 'Breaking Bad' is top-notch."
+    },
+    {
+        "thread_id": 12,
+        "user_id": 1,
+        "body": "I'll never forget the 'I am the one who knocks!' scene."
+    },
+    {
+        "thread_id": 7,
+        "user_id": 1,
+        "body": "What's your favorite 'Breaking Bad' episode?"
+    },
+    {
+        "thread_id": 8,
+        "user_id": 2,
+        "body": "I'm still amazed at how intense the final season was."
+    },
+    {
+        "thread_id": 9,
+        "user_id": 3,
+        "body": "Walter White's transformation throughout the series is mind-blowing."
+    },
+    {
+        "thread_id": 10,
+        "user_id": 1,
+        "body": "I've watched 'Breaking Bad' multiple times and it never gets old."
+    },
+    {
+        "thread_id": 11,
+        "user_id": 2,
+        "body": "Hank's determination to catch Heisenberg is legendary."
+    },
+    {
+        "thread_id": 12,
+        "user_id": 3,
+        "body": "Saul Goodman's one-liners are pure gold."
+    },
+    {
+        "thread_id": 7,
+        "user_id": 2,
+        "body": "The character dynamics in 'Breaking Bad' are so well-crafted."
+    },
+    {
+        "thread_id": 8,
+        "user_id": 1,
+        "body": "What are your thoughts on the 'Breaking Bad' finale?"
+    },
+    {
+        "thread_id": 9,
+        "user_id": 3,
+        "body": "I can't help but sympathize with Jesse Pinkman."
+    },
+    {
+        "thread_id": 10,
+        "user_id": 1,
+        "body": "Do you think Walter White was justified in his actions?"
+    },
+    {
+        "thread_id": 11,
+        "user_id": 2,
+        "body": "Gus Fring's meticulous nature is both chilling and impressive."
+    },
+    {
+        "thread_id": 12,
+        "user_id": 3,
+        "body": "The legacy of 'Breaking Bad' in TV history is undeniable."
     }
-  ]
-  
+]

@@ -2,22 +2,62 @@
     {
         "community_id": "1",
         "user_id": "1",
-        "subject": "The first thread"
+        "subject": "Homer Simpson's classic 'D'oh!' never gets old!"
     },
     {
         "community_id": "1",
         "user_id": "2",
-        "subject": "The second thread"
+        "subject": "I love how 'The Simpsons' satirizes so many aspects of American culture."
+    },
+    {
+        "community_id": "1",
+        "user_id": "3",
+        "subject": "Bart's misadventures always crack me up!"
+    },
+    {
+        "community_id": "1",
+        "user_id": "1",
+        "subject": "Marge is such an underrated character, the voice of reason in the chaos."
+    },
+    {
+        "community_id": "1",
+        "user_id": "2",
+        "subject": "Springfield has the most bizarre and memorable characters."
+    },
+    {
+        "community_id": "1",
+        "user_id": "3",
+        "subject": "Lisa's intelligence and activism make her a role model."
+    },
+    {
+        "community_id": "2",
+        "user_id": "1",
+        "subject": "I can't believe how intense the final season was. Pure brilliance!"
     },
     {
         "community_id": "2",
         "user_id": "2",
-        "subject": "The third thread"
+        "subject": "Jesse Pinkman's 'Yeah, science!' is an iconic moment in TV history."
     },
     {
         "community_id": "2",
         "user_id": "3",
-        "subject": "The fourth thread"
+        "subject": "Walter White's transformation throughout the series is mind-blowing!"
+    },
+    {
+        "community_id": "2",
+        "user_id": "1",
+        "subject": "Gus Fring's character is the definition of a calm and calculated villain."
+    },
+    {
+        "community_id": "2",
+        "user_id": "2",
+        "subject": "The cinematography in 'Breaking Bad' is on another level."
+    },
+    {
+        "community_id": "2",
+        "user_id": "3",
+        "subject": "Saul Goodman brings much-needed humor to the dark storyline."
     }
   ]
   
