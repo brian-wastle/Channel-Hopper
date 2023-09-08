@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
   let processedData = shows.map(showEntry => {
     let show = showEntry.show;
     let result = {
+        api_id: show.id,
         name: show.name,
         image: show.image,
         summary: show.summary,
@@ -25,6 +26,7 @@ router.get('/', async (req, res) => {
         ended: show.ended? dayjs(show.ended).format('MM/DD/YYYY') : null,
         runtime: show.averageRuntime,
         officialSite: show.officialSite,
+       
         messages: []
     };
     if (show.officialSite === null) {result.messages.push ("This show does not have an official site.")};
