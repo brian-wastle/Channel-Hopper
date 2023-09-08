@@ -108,13 +108,14 @@ router.get('/reviews/:id', async (req, res) => {
       include: [
         {
           model: Users,
-          attributes: ['name'],
+          attributes: ['name', 'avatarPath'],
         },
         {
           model: Communities,
           where: { id: Sequelize.col('Reviews.community_id') }, 
           required: true,
         },
+      
       ],
     });
     const reviews = reviewData.get({ plain: true });
@@ -169,12 +170,19 @@ router.get('/threads/:id', async (req, res) => {
       var currentUserId = 0;
     }
 
-    const threadData = await Threads.findOne({ where: { id: req.params.id } });
+    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {include: {
+      model: Users,
+      attributes: ['name', 'avatarPath'],
+      required: true
+    
+    }});
+
     const thread = threadData.get({ plain: true });
 
     const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
       include: {
         model: Users,
+        attributes: ['name', 'avatarPath'],
         required: true
       }});
     const posts = postData.map((post) => post.get({ plain: true }));
