@@ -1,26 +1,25 @@
-  <h1>{{community.name}}</h1>
-  
-  <div class="col-md-6 blog-list">
-    <h3>Community Reviews:</h3>
-       {{#each reviews as |review|}}
-    <div class="row mb-2">
-      <a href="/reviews/{{review.id}}">{{review.subject}}</a>
+<div>
+    <h1>{{community.name}}</h1>
+
+    <div>
+        <h3>{{subject}}:</h3>
     </div>
-    {{/each}}
-  </div>
 
-
-
-{{!-- <div class=>
-
-
-    <h3>Review: </h3>
-    <p>{{body}}</p> --}}
-
-
-
-
-
+    <div>
+        <p>{{body}}:</p>
+    </div>
+    <br>
+    
+    {{#if plus_one_render}}
+    <div class="plusone-container"></div>
+    <a href="" class="plusOneButton">Add a plusOne</a>
+    {{else}}
+    <div class="plusone-container-null"></div>
+    <p>You added a plusOne to this post!</p>
+    {{/if}}
+    </div>
 
 
 </div>
+
+<script src="/js/plusones.js"></script>

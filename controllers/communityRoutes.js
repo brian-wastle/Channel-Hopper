@@ -28,11 +28,13 @@ router.get('/:id', async (req, res) => {
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
     const community = communityData.get({ plain: true });
 
-    const threadData = await Threads.findAll({ where: { id: community.id } });
-    const threads = threadData.map((thread) => thread.get({ plain: true }));
+    const threadData = await Threads.findAll({ where: { community_id: community.id } });
+    const threadsArray = threadData.slice(0, 3);
+    const threads = threadsArray.map((thread) => thread.get({ plain: true }));
 
-    const reviewData = await Reviews.findAll({ where: { id: community.id } });
-    const reviews = reviewData.map((thread) => thread.get({ plain: true }));
+    const reviewData = await Reviews.findAll({ where: { community_id: community.id } });
+    const reviewsArray = reviewData.slice(0, 3);
+    const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
     res.render('community', {
     ...community,
@@ -146,8 +148,6 @@ router.post('/', withAuth, async (req, res) => {
       const threadData = await Threads.findAll({ where: { community_id: req.params.id } });
       const threads = threadData.map((thread) => thread.get({ plain: true }));
   
-      console.log(threads);
-      console.log(community)
         res.render('conversations', {threads, community, logged_in: req.session.logged_in })
       
     } catch (err) {
@@ -165,14 +165,38 @@ router.get('/:id/reviews', async (req, res) => {
     const reviewData = await Reviews.findAll({ where: { community_id: req.params.id } });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
 
-    console.log(reviews);
-    console.log(community);
-      res.render('review', {reviews, community, logged_in: req.session.logged_in })
+      res.render('reviews', {reviews, community, logged_in: req.session.logged_in })
     
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+
+//takes user to new thread page
+router.get('/:id/newthread', async (req, res) => {
+  try {
+
+    res.render('newThread', { 
+      logged_in: req.session.logged_in 
+    });
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//takes user to new review page
+router.get('/:id/newreview', async (req, res) => {
+  try {
+
+    res.render('newreview', { 
+      logged_in: req.session.logged_in 
+    });
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
