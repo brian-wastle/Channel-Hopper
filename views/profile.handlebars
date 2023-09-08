@@ -4,7 +4,9 @@
 </div>
 
 <div class="row mt-4">
-  <img src="{{user.avatarPath}}" alt="">
+  <h2>Welcome, {{user.name}}</h2>
+  <img src="{{user.avatarPath}}" alt="User Avatar" width="100" height="100">
+  
   {{#if communities.length}}
     <div class="col-md-6 blog-list">
       <h3>My Communities:</h3>

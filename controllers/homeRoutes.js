@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   try {
     //get the two most recent communities
     let communityData = await Communities.findAll({
-      order: [['id', 'DESC']], // Order by 'id' column in descending order
+      order: [['id', 'ASC']], // Order by 'id' column in descending order
     });
     
     const communityOne = communityData.slice(0, 1);
@@ -94,7 +94,7 @@ router.get('/profile', withAuth, async (req, res) => {
         where: {
           id: req.session.user_id,
         },
-        attributes: ['name', 'id'], 
+        attributes: ['name', 'id', 'avatarPath'], 
         });
       } else {
         var user;
@@ -126,6 +126,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const reviews = reviewData.map((review) => review.get({ plain: true }));
 //render profile with threads and reviews data
     res.render('profile', { 
+      user:user.dataValues,
       threads, 
       reviews,
       communities,

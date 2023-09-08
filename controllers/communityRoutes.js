@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../models');
-const Sequelize = require('sequelize');
 const withAuth = require('../utils/auth');
 const dayjs = require('dayjs');
 
@@ -28,35 +27,12 @@ router.get('/:id', async (req, res) => {
 
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
     const community = communityData.get({ plain: true });
-;
-//finds the most popular threads based on the number of posts on that thread and returns the top 3
-    const threadData = await Threads.findAll({
-      attributes: [
-        'id',
-        'subject',
-        'date_created',
-        [Sequelize.literal('(SELECT COUNT(*) FROM posts WHERE posts.thread_id = threads.id)'), 'post_count'],
-      ],
-      include: [
-        {
-          model: Posts,
-          attributes: [],
-          required: false, // Use 'required: false' to perform a LEFT JOIN
-        },
-      ],
-      where: { community_id: community.id }, // Replace 2 with the actual community ID value
-      group: ['Threads.id'],
-      order: [[Sequelize.literal('post_count'), 'DESC']],
-    });
+
+    const threadData = await Threads.findAll({ where: { community_id: community.id } });
     const threadsArray = threadData.slice(0, 3);
     const threads = threadsArray.map((thread) => thread.get({ plain: true }));
 
-//finds the most popular reviews based on the number of plusones and returns the top 3
-
-    const reviewData = await Reviews.findAll({
-      order: [['plusones', 'DESC']],
-      where: { community_id: community.id }
-    });
+    const reviewData = await Reviews.findAll({ where: { community_id: community.id } });
     const reviewsArray = reviewData.slice(0, 3);
     const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
@@ -100,7 +76,7 @@ router.get('/name/:api_id', async (req, res) => {
     }
     if (communityData === null) {
 
-      
+      //need id for community
 
       let response = await fetch(`https://api.tvmaze.com/shows/${req.params.api_id}`)
       let show = await response.json()
@@ -128,7 +104,6 @@ router.get('/name/:api_id', async (req, res) => {
       } catch (error) {
         console.log(error)
       }
-
 
      
 
