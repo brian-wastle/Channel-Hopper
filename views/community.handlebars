@@ -5,6 +5,27 @@
 
 <div class="row mt-4">
 <h1>{{name}}</h1>
+<img src="{{image}}" alt="We could not find an image for this show!">
+{{#if summary}}
+<div>{{{summary}}}</div>
+{{/if}}
+
+{{#if status}}
+<div><p>Status: {{status}}</p></div>
+{{/if}}
+
+{{#if premiere}}
+<div><p>Premiere date: {{format_date premiere}}</p></div>
+{{/if}}
+{{#if ended}}
+<div><p>End Date: {{format_date ended}}</p></div>
+{{/if}}
+{{#if runtime}}
+<div><p>Runtime: {{runtime}} minutes</p></div>
+{{/if}}
+{{#if officialSite}}
+<div><p>Official site: {{officialSite}}</p></div>
+{{/if}}
 
   <div class="col-md-6 blog-list">
     <h3>Top Conversations:</h3>
