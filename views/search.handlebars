@@ -7,12 +7,12 @@
 
 
     {{#each shows as |obj|}}
-    {{log obj}}
+    {{!-- {{log obj}} --}}
     <div class="tv-show">
-        <h1>{{obj.name}}</h1>
+        <a href="/community/name/{{obj.api_id}}" data-show-name="{{obj.name}}"><h1>{{obj.name}}</h1></a>
         <img src="{{obj.image.medium}}" alt="We could not find an image for this show!">
         {{{obj.summary}}}
-       
+       {{obj.id}}
        
        
        {{#each obj.messages as |message|}}

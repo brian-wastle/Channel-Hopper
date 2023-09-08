@@ -49,6 +49,78 @@ router.get('/:id', async (req, res) => {
     }
   });
 
+  router.get('/name/:api_id', async (req, res) => {
+    console.log(req.params.name)
+    try {
+      if (req.session.user_id) {
+      var user = await Users.findOne({
+        where: {
+          id: req.session.user_id,
+        },
+        attributes: ['name', 'id'], 
+      });
+      } else {
+        var user;
+      }
+
+      if (user) {
+        var currentUserId = user.dataValues.id;
+      } else {
+        var currentUserId = 0;
+      }
+  
+    let communityData = await Communities.findOne({ where: { api_id: req.params.api_id } });
+    console.log(communityData)
+    if (communityData){
+      res.redirect(`/community/${communityData.id}`)
+    }
+    if(communityData === null){
+
+      //need id for community
+      
+      let response = await fetch(`https://api.tvmaze.com/shows/${req.params.api_id}`)
+      let shows = await response.json()
+      console.log(shows)
+      let show = showEntry.show;
+      let [result] = shows.map(showEntry => {
+      let show = showEntry.show;
+      let result = {
+          api_id: show.id,
+          name: show.name,
+          image: show.image,
+          summary: show.summary,
+          status: show.status,
+          premiere: show.premiered ? dayjs(show.premiered).format('MM/DD/YYYY') : null,
+          ended: show.ended? dayjs(show.ended).format('MM/DD/YYYY') : null,
+          runtime: show.averageRuntime,
+          officialSite: show.officialSite,
+         
+      };
+      return result;
+    })
+    communityData = await Communities.create(result)
+    const community = communityData.get({ plain: true });
+
+    const threadData = await Threads.findAll({ where: { id: community.id } });
+    const threads = threadData.map((thread) => thread.get({ plain: true }));
+
+    const reviewData = await Reviews.findAll({ where: { id: community.id } });
+    const reviews = reviewData.map((thread) => thread.get({ plain: true }));
+
+    res.render('community', {
+    ...community,
+    threads,
+    reviews,
+    logged_in: req.session.logged_in,
+    current_user_id: currentUserId
+    });
+  
+    }} catch (err) {
+      console.log(err)
+      res.status(500).json(err);
+    }
+  })
+
 
 //create a new community
 router.post('/', withAuth, async (req, res) => {

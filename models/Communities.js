@@ -11,9 +11,9 @@ Communities.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    api_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      api_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
