@@ -14,9 +14,9 @@
       <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
     </div>
     <div class="row mb-2">
-      <a href="{{id}}/threads">Click here for all conversations about this show.</a>
     </div>
     {{/each}}
+      <a href="{{id}}/threads">See More Conversations...</a>
   </div>
 
   {{#if reviews.length}}
@@ -29,9 +29,9 @@
       <a href="/reviews/{{review.id}}">{{review.subject}}</a>
     </div>
     <div class="row mb-2">
-      <a href="{{id}}/reviews">Click here for all reviews about this show.</a>
     </div>
     {{/each}}
+      <a href="{{id}}/reviews">See More Reviews...</a>
   </div>
   {{/if}}
 </div>

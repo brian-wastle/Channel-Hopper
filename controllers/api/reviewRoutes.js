@@ -1,18 +1,36 @@
 const router = require('express').Router();
-const { Users, Communities, Reviews, Threads, Posts, CommunityUsers } = require('../../models');
+const { Users, Communities, Reviews, Threads, Posts, CommunityUsers, Plusones } = require('../../models');
+const Sequelize = require('sequelize');
 const withAuth = require('../../utils/auth');
 
 //create a review
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
       const newReview = await Reviews.create({
         ...req.body,
         user_id: req.session.user_id,
+        plusones: 0
       });
-  
+    
+      const reviewData = await Reviews.findAll({
+        attributes: [
+        [Sequelize.fn('max', Sequelize.col('id')), 'id']],
+        raw: true,
+        
+      });
+      // access first item in the array returned by Sequelize
+      const newReviewId = reviewData[0];
+      
+      if (newReviewId) {
+        res.json(newReviewId);
+      } else {
+        res.status(404).json({ message: 'No threads found' });
+      }
+
+
+
       res.status(200).json(newReview);
     } catch (err) {
-      res.status(400).json(err);
     }
   });
 
@@ -20,17 +38,16 @@ router.post('/', withAuth, async (req, res) => {
 //add a plusone to a review
 router.put('/:id/plusone', withAuth, async (req, res) => {
     try {
-
+        console.log('so far so good?')
         const plusOnesValue = await Reviews.findOne({ where: { id: req.params.id } });
 
         if (!plusOnesValue) {
         return res.status(404).json({ error: 'Review not found' });
         }
-        console.log(plusOnesValue)
         // Increment the value by 1
         plusOnesValue.plusones += 1;
 
-
+        console.log('not bad')
         const reviewData = await Reviews.update(
         {
             plusones: plusOnesValue.plusones
@@ -41,8 +58,14 @@ router.put('/:id/plusone', withAuth, async (req, res) => {
             }
         }
         );
-  
-      return res.status(200).json(reviewData);
+        console.log('lets go')
+        const newReview = await Plusones.create({
+          ...req.body,
+          user_id: req.session.user_id,
+          review_id:req.params.id,
+        });
+        res.status(200).json(plusOnesValue);
+        // document.location.replace(`/reviews/${req.params.id}`);
     } catch (err) {
       res.status(400).json(err);
     }
