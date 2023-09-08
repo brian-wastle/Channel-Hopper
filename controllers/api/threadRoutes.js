@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
         ],
         raw: true,
       });
+      
       // Sequelize sends back array
       const thread = threadData[0];
 

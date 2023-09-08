@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Users, Communities, Reviews, Threads, Posts, CommunityUsers, Plusones } = require('../models');
 const Sequelize = require('sequelize');
 const withAuth = require('../utils/auth');
-
+const sequelize = require('../config/connection');
 
 
 //render the homepage
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     const communityTwo = communityDataTwo.slice(1, 2);
     const communitiesTwo = communityTwo.map((community) => community.get({ plain: true }));
 
-    //find the threads from community 1
+    // find the threads from community 1
 
       
     const threadDataOne = await Threads.findAll({
@@ -37,6 +37,7 @@ router.get('/', async (req, res) => {
     });
     const threadsCommunityOne = threadDataOne.map((thread) => thread.get({ plain: true }));
 
+
     //find the threads from community 2
     const threadDataTwo = await Threads.findAll({
       where: {
@@ -50,38 +51,44 @@ router.get('/', async (req, res) => {
     });
     const threadsCommunityTwo = threadDataTwo.map((thread) => thread.get({ plain: true }));
 
-//find the reviews from community 1
-    const reviewDataOne = await Reviews.findOne({
-      where: {
-        community_id: communitiesOne[0].id,
-      },
-      order: [['id', 'DESC']],
-      limit: 1,
-      include: {
-        model: Users,
-        attributes: ['id','name'], 
-      },
-    });
+    //find the reviews from community 1
+
+      const queryOne = `
+      SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
+FROM Reviews
+INNER JOIN Users ON Reviews.user_id = Users.id
+WHERE Reviews.community_id = ${communitiesOne[0].id}
+ORDER BY Reviews.id DESC
+LIMIT 1;
+        `;
     
-    const reviewsCommunityOne = reviewDataOne.get({ plain: true });
+        const [resultsOne, metadataOne] = await sequelize.query(queryOne, {
+          type: Sequelize.QueryTypes.SELECT,
+        });
+
+    const reviewsCommunityOne = resultsOne;
+
 
     //find the reviews from community 2
-    const reviewDataTwo = await Reviews.findOne({
-      where: {
-        community_id: communitiesTwo[0].id,
-      },
-      order: [['id', 'DESC']],
-      limit: 1,
-      include: {
-        model: Users,
-        attributes: ['id','name'], 
-      },
-    });
-    const reviewsCommunityTwo = reviewDataTwo.get({ plain: true });
-// console.log(threadsCommunityOne)
-// console.log(threadsCommunityTwo)
-console.log(reviewsCommunityOne)
+
+const queryTwo = `
+      SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
+FROM Reviews
+INNER JOIN Users ON Reviews.user_id = Users.id
+WHERE Reviews.community_id = ${communitiesTwo[0].id}
+ORDER BY Reviews.id DESC
+LIMIT 1;
+        `;
+    
+        const [resultsTwo, metadataTwo] = await sequelize.query(queryTwo, {
+          type: Sequelize.QueryTypes.SELECT,
+        });
+
+    const reviewsCommunityTwo = resultsTwo;
+
 console.log(reviewsCommunityTwo)
+
+
 
     res.render('homepage', {
       communitiesOne,
