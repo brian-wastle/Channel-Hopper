@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
   let response = await fetch(`https://api.tvmaze.com/search/shows?q=${searchTerm}`)
   let shows = await response.json()
-  console.log(shows)
+//   console.log(shows)
   let processedData = shows.map(showEntry => {
     let show = showEntry.show;
     let result = {

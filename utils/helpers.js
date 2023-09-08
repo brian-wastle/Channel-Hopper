@@ -1,10 +1,11 @@
 const session = require("express-session");
 const { User } = require("../models");
+const dayjs = require('dayjs');
 
 module.exports = {
   format_date: (date) => {
     // Format date as MM/DD/YYYY
-    return date.toLocaleDateString();
+    return dayjs(date).format('MM/DD/YYYY');
   },
   verify_author: (author, user, options) => {
     if (author == user) {
