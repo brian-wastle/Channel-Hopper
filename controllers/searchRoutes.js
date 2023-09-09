@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const dayjs = require('dayjs');
+const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => { 
     
@@ -8,7 +9,8 @@ router.get('/', async (req, res) => {
 
      // Check if searchTerm is undefined or empty
      if (!searchTerm || searchTerm.trim() === "") {
-        return res.render('search', {shows: []}); // Return an empty array for shows
+        return res.render('search', {shows: [],
+            logged_in: req.session.logged_in,}); // Return an empty array for shows
     }
 
   let response = await fetch(`https://api.tvmaze.com/search/shows?q=${searchTerm}`)
@@ -59,7 +61,10 @@ router.get('/', async (req, res) => {
   
     return result;
 });
-    res.render('search', {shows: processedData})
+    res.render('search', {
+        shows: processedData,
+        logged_in: req.session.logged_in,
+    })
 
 });
 

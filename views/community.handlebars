@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <div class="pb-2">
+    <div class="communityInfo">
       <div class="is-size-5">
-        <h1>{{name}}</h1>
+        <h1 class="nameOnCommunity">{{name}}</h1>
       </div>
       {{#if logged_in}}
       {{#if subscriber}}
-      <div class="subscribe-button-container">
+      <div class="subscribe-button-container ">
         <p>Member since {{format_date subscriber.date_created}}</p>
       </div>
       {{else}}
       <div class="subscribe-button-container">
-        <button type="submit">Join this Community</button>
+        <button type="submit" class="joinCommunity">Join this Community</button>
       </div>
       {{/if}}
       {{/if}}
@@ -55,12 +55,12 @@
           </div>
         </div>
       </div>
-
+    </div>
 
 
 
       <div class="community-container">
-        <div class="com-box">
+        <div class="com-box review-box">
           <h3>Top Reviews:</h3>
 
           {{#each reviews as |review|}}
@@ -77,7 +77,7 @@
           {{/if}}
         </div>
 
-        <div class="com-box">
+        <div class="com-box conversation-box">
           <h3>Top Conversations:</h3>
 
           {{#each threads as |threads|}}
