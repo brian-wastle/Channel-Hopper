@@ -27,6 +27,11 @@ CommunityUsers.init(
       referencesKey: 'id',
       foreignKey:'user_id'
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

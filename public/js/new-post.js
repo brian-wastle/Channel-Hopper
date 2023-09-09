@@ -12,7 +12,6 @@ const newFormHandler = async (event) => {
         var tempParts = tempUrl.split('/');
         var thread_id = tempParts[tempParts.length - 1];
 
-
         const threadResponse = await fetch(`/api/posts/${thread_id}`, {
             method: 'POST',
             body: JSON.stringify({ body, thread_id }),
