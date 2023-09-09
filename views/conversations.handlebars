@@ -1,15 +1,17 @@
 <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
 
-  <div class="col-md-6 blog-list">
-    <h3>Community Conversations:</h3>
+<h1 class="is-size-4 pb-6">{{community.name}}</h1>
+
+  <div class="blog-list">
+    <h3 class="is-size-5 pb-4">Community Conversations:</h3>
 
     {{#each threads as |threads|}}
-    <div class="row mb-2">
+    <div class="row mb-2 box scroll-hover">
       <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
     </div>
     {{/each}}
 
-    <a href="newthread">Start a new conversation</a>
+    <a href="newthread" class="button is-dark mt-4">Start a new conversation</a>
   </div>
 
   

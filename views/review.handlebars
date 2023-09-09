@@ -1,8 +1,12 @@
-<div>
-    <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
+
+  <link rel="stylesheet" href="/css/style.css">
+
 
     <div>
-        <h3>{{subject}}</h3>
+    <a href="/community/{{community.id}}/"><h1 class="is-size-5 pb-4">{{community.name}}</h1></a>
+
+    <div>
+        <h3 class="has-text-weight-semibold">{{subject}}</h3>
 
         <img src="{{user.avatarPath}}" alt="user avatar" width="30" height="30">
         <span>{{user.name}} on {{format_date date_created}}</span>

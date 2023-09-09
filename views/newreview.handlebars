@@ -1,21 +1,29 @@
+  <link rel="stylesheet" href="/css/style.css">
+
 <h1>{{community.name}}</h1>
 
 <div class="col-md-6">
-    <h3>Publish a New Review:</h3>
-
+    <h3 class="is-size-5 mt-6 pb-4">Publish a New Review:</h3>
     <form class="form new-review-form">
-        <div class="form-group">
-            <label for="review-name">Review Title:</label>
-            <br>
-            <input class="form-input" type="text" id="review-name" name="review-name" />
-        </div>
-        <div class="form-group">
-            <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Publish Review</button>
-        </div>
-    </form>
-</div>
 
+
+<form class="form new-review-form">
+  <div class="field form-group"> 
+    <label class="label" for="review-name">Review Title:</label> 
+    <div class="control"> 
+      <input class="input form-input mb-4" type="text" id="review-name" name="review-name" />
+    </div>
+  </div>
+  <div class="field form-group">
+    <label class="label mt-4" for="post-body">Enter Your Review:</label> 
+    <div class="control">
+      <textarea class="textarea form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
+    </div>
+  </div>
+  <div class="field form-group"> 
+    <div class="control">
+      <button type="submit" class="button is-dark mt-4">Publish Review</button>
+    </div>
+  </div>
+</form>
 <script src="/js/new-review.js"></script>

@@ -1,23 +1,77 @@
+  <link rel="stylesheet" href="/css/style.css">
+
 <h1>{{community.name}}</h1>
 
 <div class="col-md-6">
-  <h3>Create a New Conversation:</h3>
+  <h3 class="is-size-5 mt-6 pb-4">Create a New Conversation:</h3>
 
-  <form class="form new-thread-form">
-    <div class="form-group">
-      <label for="thread-name">Thread Name:</label>
-      <br>
-      <input class="form-input" type="text" id="thread-name" name="thread-name" />
+
+
+<form class="form new-thread-form">
+  <div class="field"> 
+    <label class="label" for="thread-name">Thread Name:</label> 
+    <div class="control"> 
+      <input class="input form-input mb-4" type="text" id="thread-name" name="thread-name" />
     </div>
-    <div class="form-group">
-      <label for="post-body">Enter Your First Comment:</label>
-      <br>
-      <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
+  </div>
+  <div class="field">
+    <label class="label mt-4" for="post-body">Enter Your First Comment:</label> 
+    <div class="control">
+      <textarea class="textarea form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
     </div>
+  </div>
+  <div class="field"> 
+    <div class="control">
+      <button type="submit" class="button is-dark mt-4">Create Conversation</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {{!-- <form class="form new-thread-form">
+    <div class="form-group field">
+      <label for="thread-name" class="label"></label>Thread Name:</label>
+      <br>
+      <div class="control">
+      <input class="form-input input" type="text" id="thread-name" name="thread-name"/>
+      </div>
+    </div>
+
+
+    <div class="form-group field">
+      <label for="post-body" class="label">Enter Your First Comment:</label>
+      <br>
+      <div class="control">
+      <textarea class="form-input textarea" id="post-body" name="post-body" rows="8" cols="20"></textarea>
+      </div>
+    </div>
+
+
+
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Create Conversation</button>
+      <button type="submit" class="button is-dark">Create Conversation</button>
     </div>
   </form>
 </div>
+
+
+ --}}
+
+
+
+
 
 <script src="/js/new-thread.js"></script>

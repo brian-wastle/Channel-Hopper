@@ -1,3 +1,9 @@
+{{!-- 
+  <div class="profile">  
+  {{#if communities.length}}
+    <div class="col-md-6 blog-list">
+--}}
+
 <div class="profile">
   <div class="my-communities">
     {{#if communities.length}}
@@ -34,15 +40,25 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{!-- 
-  <div class="profile">  
 
-  <h2>Welcome, {{user.name}}</h2>
-  <img src="{{user.avatarPath}}" alt="User Avatar" width="100" height="100">
-  
-
-  {{#if communities.length}}
-    <div class="col-md-6 blog-list">
       <h3>My Communities:</h3>
 
       {{#each communities as |communities|}}
