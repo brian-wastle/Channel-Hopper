@@ -13,6 +13,7 @@ header {
 body {
   background-color: #ADB5BD;
   min-height: 100vh;
+  
 }
 
 header {
@@ -62,7 +63,7 @@ textarea {
 .profile {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-top: 100px;
+  margin-top: 60px;
   margin-left: 60px;
 
 }
@@ -135,6 +136,14 @@ textarea {
 .tv-show {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 40px;
+
+}
+
+.showName {
+  font-size: 32px;
+  position: relative;
+ top: -15px;
 }
 
 .show-summary {
@@ -180,4 +189,172 @@ textarea {
   align-items: flex-start;
 }
 
+.comReviewName{
+  font-size: 50px;
+  margin-bottom: 20px;
+}
 
+.avatar-selected {
+ 
+  border: 2px dashed #343A40;
+}
+
+.joinCommunity{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #8abbdb;
+  border: 1px solid #343A40;
+  border-radius: 10px;
+  padding: 5px;
+  }
+.logo{
+    border-radius: 7px;
+  }
+
+#homepage, #dashboard, #gotoSearch{
+    color: #8abbdb;
+  }
+
+  #homepage:hover, #dashboard:hover, #gotoSearch:hover{
+    background-color: black;
+  }
+  
+.nameOnCommunity{
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+.subscribe-button-container{
+  margin: 12px 0px ;
+}
+
+
+/* media queries */
+@media screen and (max-width: 991px){
+/* home/main elements */
+.navbar{
+  display: flex;
+  flex-direction: row;
+ justify-content: space-between;
+}
+
+
+/* cant get these buttons to display in line with each other, leaving them as is for now because if i don't target them, they disappear. rather have them wrong and on the page than not on the page at all */
+.navbar-menu{
+ display: flex;
+ flex-direction: row;
+ background-color: #343A40;
+}
+
+.welcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome h2, .welcomeMessage{
+  margin: 10px 50px 0px 50px;
+  
+}
+
+.tvpic{
+  height: 350px;
+  width: 400px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main-home{
+
+margin-bottom: 60px;
+  margin-top: 20px;
+  margin-left: 0px;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* profile elements */
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 0px;
+}
+
+.my-communities, .my-conversations, .my-reviews{
+  width: 300px;
+  margin-bottom: 30px;
+}
+/* search page elements */
+.searchbar{
+ position: relative;
+ right: 250px;
+}
+.tv-show{
+  margin: 50px 50px;
+}
+/* community page elements */
+.communityInfo{
+ display: flex;
+ flex-direction: column;
+  align-items: center;
+}
+.nameOnCommunity{
+  font-size: 50px;
+}
+.subscribe-button-container{
+  margin: 0px;
+}
+.tv-show{
+  margin-top: 20px;
+}
+.community-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.conversation-box{
+  margin-bottom: 30px;
+}
+/* review elements */
+.reviewContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 50px;
+}
+#reviewShow{
+  
+  font-size: 50px;
+}
+.reviewSubject{
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.reviewSubUser{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.comReviewContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.comReviewName{
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+/* thread elements */
+.thread-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+}
