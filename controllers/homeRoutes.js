@@ -117,7 +117,7 @@ router.get('/profile', withAuth, async (req, res) => {
         where: {
           id: req.session.user_id,
         },
-        attributes: ['name', 'id'], 
+        attributes: ['name', 'id', 'avatarPath'], 
         });
       } else {
         var user;
@@ -149,6 +149,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const reviews = reviewData.map((review) => review.get({ plain: true }));
 //render profile with threads and reviews data
     res.render('profile', { 
+      user:user.dataValues,
       threads, 
       reviews,
       communities,
@@ -185,13 +186,14 @@ router.get('/reviews/:id', async (req, res) => {
       include: [
         {
           model: Users,
-          attributes: ['name'],
+          attributes: ['name', 'avatarPath'],
         },
         {
           model: Communities,
           where: { id: Sequelize.col('Reviews.community_id') }, 
           required: true,
         },
+      
       ],
     });
     const reviews = reviewData.get({ plain: true });
@@ -246,12 +248,19 @@ router.get('/threads/:id', async (req, res) => {
       var currentUserId = 0;
     }
 
-    const threadData = await Threads.findOne({ where: { id: req.params.id } });
+    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {include: {
+      model: Users,
+      attributes: ['name', 'avatarPath'],
+      required: true
+    
+    }});
+
     const thread = threadData.get({ plain: true });
 
     const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
       include: {
         model: Users,
+        attributes: ['name', 'avatarPath'],
         required: true
       }});
     const posts = postData.map((post) => post.get({ plain: true }));
