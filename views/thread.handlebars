@@ -1,15 +1,17 @@
 
-<div>
+<link rel="stylesheet" href="/css/style.css">
+
+<div >
     
-    <h3>{{subject}}:</h3>
+    <h3 class = "mt-8 pb-6 is-size-5">{{subject}}:</h3>
 
 
 
-        <div class="col-md-6 blog-list">
-            <h3>Replies:</h3>
+        <div>
+            <h3 class="pb-4">Replies:</h3>
 
             {{#each posts as |post|}}
-            <div class="row mb-2">
+            <div class="pb-4 is-italic">
             {{body}}
             <br>
             </div>
@@ -18,7 +20,7 @@
 
     <div>
         <form class="form new-comment-form">
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="post-body">Add a comment:</label>
                 <br>
                 <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>

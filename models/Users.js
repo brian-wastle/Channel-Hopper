@@ -34,7 +34,12 @@ Users.init(
       validate: {
         len: [8],
       },
-    },
+      },
+      avatarPath: {
+        type: DataTypes.STRING,
+        allowNull: false,
+       
+      },
   },
   {
     hooks: {
