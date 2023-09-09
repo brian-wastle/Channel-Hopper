@@ -36,14 +36,15 @@ document.getElementById('avatar-group').addEventListener('click', function(event
 
 
 function loginButtonHandler() {
-    document.location.replace('/login');
+    document.location.replace('/signup');
 }
   
 document
   .querySelector('.signup-form')
   .addEventListener('submit', signupFormHandler);
 
-document
-  .querySelector('#login-button')
-  .addEventListener('click', loginButtonHandler);
+
+// document
+//   .querySelector('#login-button')
+//   .addEventListener('click', loginButtonHandler);
 

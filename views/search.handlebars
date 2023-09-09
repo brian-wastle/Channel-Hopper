@@ -1,6 +1,12 @@
-<div>
-    <input type="text" id="searchInput" placeholder="Search for a TV show...">
-    <button id="searchButton">Search</button>
+<div class="field has-addons searchbar">
+    <div class="control">
+        <input class="input" type="text" id="searchInput" placeholder="Search for a TV show...">
+    </div>
+    <div class="control">
+        <a class="button is-info" id="searchButton">
+            Search
+        </a>
+    </div>
 </div>
 
 <div id="searchResults">
@@ -9,17 +15,33 @@
     {{#each shows as |obj|}}
     {{!-- {{log obj}} --}}
     <div class="tv-show">
-        <a href="/community/name/{{obj.api_id}}" data-show-name="{{obj.name}}"><h1>{{obj.name}}</h1></a>
-        <img src="{{obj.image.medium}}" alt="We could not find an image for this show!">
-        {{{obj.summary}}}
-       {{obj.id}}
-       
-       
-       {{#each obj.messages as |message|}}
-       <p>{{message}}</p>
-       {{/each}}
-        
+        <div class="search-img">
+            <img src="{{obj.image.medium}}" alt="We could not find an image for this show!">
+        </div>
+        <div class="show-summary">
+            <a href="/community/name/{{obj.api_id}}" data-show-name="{{obj.name}}">
+                <h1>{{obj.name}}</h1>
+            </a>
+            <div>
+                {{{obj.summary}}}
+            </div>
+            <div class="show-info">
+                {{#each obj.messages as |message|}}
+                <div>
+                    <p>{{message}}</p>
+                </div>
+                {{/each}}
+
+            </div>
+            <div>
+                {{obj.id}}
+            </div>
+        </div>
     </div>
+
+
+
+
     {{/each}}
 </div>
 

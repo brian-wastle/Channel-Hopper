@@ -1,9 +1,18 @@
 * {
   color: #0c3c52;
 }
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
 
+header {
+  background-color: #343A40;
+}
+
+.nav-color {
+  background-color: #343A40;
+}
+
+body {
+  background-color: #ADB5BD;
+  min-height: 100vh;
 }
 
 header {
@@ -48,4 +57,103 @@ textarea {
   box-sizing: border-box;
 
   width: 100%;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 100px;
+  margin-left: 60px;
+
+}
+
+.login-button {
+  margin-top: 120px;
+}
+
+.my-communities {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  background-color: #F8F9FA;
+  width: 300px;
+  text-align: center;
+}
+
+
+.my-conversations {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  background-color: #F8F9FA;
+  width: 300px;
+  text-align: center;
+}
+
+.my-reviews {
+    display: flex;
+    flex-flow: column wrap;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    line-height: 200%;
+    box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+    background-color: #F8F9FA;
+    width: 300px;
+    text-align: center;
+}
+
+.welcome {
+  font-size: 25px;;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 15px;;
+}
+
+.home-container {
+  display: flex;
+}
+
+.main-home {
+  margin-top: 70px;
+  margin-left: 80px;
+}
+
+.tvpic {
+  margin-top: 70px;
+}
+
+.tv-show {
+  display: flex;
+  align-items: flex-start;
+}
+
+.show-summary {
+  flex: 1;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+.search-img {
+  max-width: 100%;
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+
+.searchbar {
+  margin-top: 50px;
+  margin-left: 500px;
+  padding-bottom: 50px
+}
+
+.show-info {
+  padding-top: 20px;
 }

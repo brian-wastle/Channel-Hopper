@@ -1,12 +1,46 @@
-<div class="row">
-  <div class="col-auto">
+<div class="profile">
+  <div class="my-communities">
+    {{#if communities.length}}
+    <h3>My Communities:</h3>
+    {{#each communities as |communities|}}
+    <div>
+      <a href="/community/{{communities.id}}">{{communities.name}}</a>
+    </div>
+    {{/each}}
+    {{/if}}
+  </div>
+
+  <div class="my-conversations">
+    {{#if threads.length}}
+    <h3>My Conversations:</h3>
+    {{#each threads as |thread|}}
+    <div class="row mb-2">
+      <a href="/threads/{{thread.id}}">{{thread.subject}}</a>
+    </div>
+    {{/each}}
+    {{/if}}
+  </div>
+
+  <div class="my-reviews">
+    {{#if reviews.length}}
+    <h3>My Reviews:</h3>
+    {{#each reviews as |review|}}
+    <div class="row mb-2">
+      <a href="/reviews/{{review.id}}">{{review.subject}}</a>
+    </div>
+    {{/each}}
+    {{/if}}
   </div>
 </div>
 
-<div class="row mt-4">
+
+{{!-- 
+  <div class="profile">  
+
   <h2>Welcome, {{user.name}}</h2>
   <img src="{{user.avatarPath}}" alt="User Avatar" width="100" height="100">
   
+
   {{#if communities.length}}
     <div class="col-md-6 blog-list">
       <h3>My Communities:</h3>
@@ -44,5 +78,6 @@
   </div>
   {{/if}}
 </div>
+</div> --}}
 
 {{!-- <script src="./js/script.js"></script> --}}
