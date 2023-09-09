@@ -109,7 +109,6 @@ LIMIT 1;
   }
 });
 
-
 //render the user's profile page
 router.get('/profile', withAuth, async (req, res) => {
   
@@ -132,8 +131,6 @@ router.get('/profile', withAuth, async (req, res) => {
       } else {
         var currentUserId = 0;
       }
-
-
 
     const commData = await Communities.findAll({
       include: [
@@ -192,6 +189,7 @@ router.get('/reviews/:id', async (req, res) => {
         {
           model: Users,
           attributes: ['name', 'avatarPath'],
+          as: 'user',
         },
         {
           model: Communities,
@@ -217,7 +215,7 @@ router.get('/reviews/:id', async (req, res) => {
     } else {
       plusOneRender = true;
     }
-
+    console.log(reviews)
     res.render('review', {
       ...reviews,
       logged_in: req.session.logged_in,
@@ -253,14 +251,42 @@ router.get('/threads/:id', async (req, res) => {
       var currentUserId = 0;
     }
 
-    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {include: {
-      model: Users,
-      attributes: ['name', 'avatarPath'],
-      required: true
-    
-    }});
 
+    let reviewData = await Reviews.findByPk(req.params.id, {
+      include: [
+        {
+          model: Users,
+          attributes: ['name', 'avatarPath'],
+          as: 'user',
+        },
+        {
+          model: Communities,
+          where: { id: Sequelize.col('Reviews.community_id') }, 
+          required: true,
+        },
+      
+      ],
+    });
+
+
+
+    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {
+      include: [{
+        model: Users,
+        where: { id: Sequelize.col('Threads.user_id') },
+        attributes: ['id', 'name', 'avatarPath'],
+      }]
+    });
+    
     const thread = threadData.get({ plain: true });
+
+
+    const authorData = await Users.findOne({
+      where: { id: thread.user_id },
+      attributes: ['name', 'avatarPath'], // Specify the attributes you want to retrieve
+    });
+
+    const author = authorData.get({ plain: true });
 
     const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
       include: {
@@ -268,11 +294,12 @@ router.get('/threads/:id', async (req, res) => {
         attributes: ['name', 'avatarPath'],
         required: true
       }});
-    const posts = postData.map((post) => post.get({ plain: true }));
 
+    const posts = postData.map((post) => post.get({ plain: true }));
     res.render('thread', {
       ...thread,
       posts,
+      author,
       logged_in: req.session.logged_in,
       current_user_id: currentUserId
     });
