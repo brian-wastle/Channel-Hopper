@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Users } = require('../../models');
-
+const { Users, CommunityUsers } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //sign up route
 router.post('/', async (req, res) => {
@@ -62,5 +62,23 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
+//subscribe to a community
+router.post('/subscribe', async (req, res) => {
+  try {
+    const newCommunity = await CommunityUsers.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newCommunity);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
 
 module.exports = router;

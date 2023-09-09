@@ -3,8 +3,21 @@
   <div class="community-info">
     <div class="row mt-4">
       <h1 class="is-size-5">{{name}}</h1>
+        {{#if logged_in}}
+          {{#if subscriber}}
+          <div class="subscribe-button-container">
+            <p>Member since {{format_date subscriber.date_created}}</p>
+          </div>
+          {{else}}
+          <div class="subscribe-button-container">
+            <button type="submit">Join this Community</button>
+          </div>
+          {{/if}}
+        {{/if}}
+
+
       <div class="comm-img">
-        <img src="{{image}}" alt="We could not find an image for this show!">
+        <img src="{{image}}" alt="Promotional image for {{name}}">
       </div>
       {{#if summary}}
       <div>{{{summary}}}</div>
@@ -72,4 +85,13 @@
   
 
   
-  {{!-- <script src="./js/dashboard.js"></script> --}}
+  
+
+
+    
+ {{#if logged_in}}
+  {{#if subscriber}}
+  {{else}}
+  <script src="/js/subscribe.js"></script>
+  {{/if}}
+{{/if}}
