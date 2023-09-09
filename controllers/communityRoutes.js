@@ -36,8 +36,22 @@ router.get('/:id', async (req, res) => {
     const reviewsArray = reviewData.slice(0, 3);
     const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
+      const subscribedData = await CommunityUsers.findOne({ 
+        where: { 
+          user_id: req.session.user_id,
+          community_id: req.params.id, 
+        } 
+      });
+
+    if (subscribedData) {
+    var subscriber = subscribedData.get({ plain: true });
+    } else {
+      var subscriber;
+    }
+
     res.render('community', {
       ...community,
+      subscriber,
       threads,
       reviews,
       logged_in: req.session.logged_in,
@@ -49,6 +63,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//generates a new community if one does not exist
 router.get('/name/:api_id', async (req, res) => {
   console.log(req.params.name)
   try {
@@ -75,8 +90,6 @@ router.get('/name/:api_id', async (req, res) => {
       res.redirect(`/community/${communityData.id}`)
     }
     if (communityData === null) {
-
-      //need id for community
 
       let response = await fetch(`https://api.tvmaze.com/shows/${req.params.api_id}`)
       let show = await response.json()

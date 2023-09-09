@@ -8,23 +8,32 @@ const sequelize = require('../config/connection');
 //render the homepage
 router.get('/', async (req, res) => {
   try {
-    // get the two most recent communities
-    let communityData = await Communities.findAll({
-      order: [['id', 'ASC']], // Order by 'id' column in descending order
-    });
-    
-    const communityOne = communityData.slice(0, 1);
-    const communitiesOne = communityOne.map((community) => community.get({ plain: true }));
 
-    communityDataTwo = await Communities.findAll({
-      order: [['id', 'DESC']], // Order by 'id' column in descending order
-    });
-    const communityTwo = communityDataTwo.slice(1, 2);
-    const communitiesTwo = communityTwo.map((community) => community.get({ plain: true }));
+    const query = `
+    SELECT
+        communities.id,
+        communities.name,
+        communities.image,
+        COUNT(threads.id) AS thread_count
+    FROM
+        communities
+    LEFT JOIN
+        threads
+    ON
+        communities.id = threads.community_id
+    GROUP BY
+        communities.id, communities.name
+    ORDER BY
+        thread_count DESC;
+  `;
+  
+  let communityData = await sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
+  })
+  const communitiesOne = communityData.slice(0, 1);
+  const communitiesTwo = communityData.slice(1, 2);
 
     // find the threads from community 1
-
-      
     const threadDataOne = await Threads.findAll({
       where: {
         community_id: communitiesOne[0].id,
@@ -51,8 +60,8 @@ router.get('/', async (req, res) => {
     });
     const threadsCommunityTwo = threadDataTwo.map((thread) => thread.get({ plain: true }));
 
-    //find the reviews from community 1
 
+    //find the reviews from community 1
       const queryOne = `
       SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
@@ -70,7 +79,6 @@ LIMIT 1;
 
 
     //find the reviews from community 2
-
 const queryTwo = `
       SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
@@ -86,10 +94,6 @@ LIMIT 1;
 
     const reviewsCommunityTwo = resultsTwo;
 
-console.log(reviewsCommunityTwo)
-
-
-
     res.render('homepage', {
       communitiesOne,
       communitiesTwo,
@@ -104,7 +108,6 @@ console.log(reviewsCommunityTwo)
     res.status(500).json(err);
   }
 });
-
 
 //render the user's profile page
 router.get('/profile', withAuth, async (req, res) => {
@@ -129,18 +132,17 @@ router.get('/profile', withAuth, async (req, res) => {
         var currentUserId = 0;
       }
 
-
-
     const commData = await Communities.findAll({
       include: [
         {
           model: Users,
           through: CommunityUsers, 
-          where: { id: currentUserId },
+          where: { id: req.session.user_id },
         },
       ],
     });
     const communities = commData.map((community) => community.get({ plain: true }));
+    console.log(req.session)
 //get all user's threads
     const threadData = await Threads.findAll({ where: { user_id: currentUserId } });
     const threads = threadData.map((thread) => thread.get({ plain: true }));
@@ -187,6 +189,7 @@ router.get('/reviews/:id', async (req, res) => {
         {
           model: Users,
           attributes: ['name', 'avatarPath'],
+          as: 'user',
         },
         {
           model: Communities,
@@ -212,7 +215,7 @@ router.get('/reviews/:id', async (req, res) => {
     } else {
       plusOneRender = true;
     }
-
+    console.log(reviews)
     res.render('review', {
       ...reviews,
       logged_in: req.session.logged_in,
@@ -248,14 +251,42 @@ router.get('/threads/:id', async (req, res) => {
       var currentUserId = 0;
     }
 
-    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {include: {
-      model: Users,
-      attributes: ['name', 'avatarPath'],
-      required: true
-    
-    }});
 
+    let reviewData = await Reviews.findByPk(req.params.id, {
+      include: [
+        {
+          model: Users,
+          attributes: ['name', 'avatarPath'],
+          as: 'user',
+        },
+        {
+          model: Communities,
+          where: { id: Sequelize.col('Reviews.community_id') }, 
+          required: true,
+        },
+      
+      ],
+    });
+
+
+
+    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {
+      include: [{
+        model: Users,
+        where: { id: Sequelize.col('Threads.user_id') },
+        attributes: ['id', 'name', 'avatarPath'],
+      }]
+    });
+    
     const thread = threadData.get({ plain: true });
+
+
+    const authorData = await Users.findOne({
+      where: { id: thread.user_id },
+      attributes: ['name', 'avatarPath'], // Specify the attributes you want to retrieve
+    });
+
+    const author = authorData.get({ plain: true });
 
     const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
       include: {
@@ -263,11 +294,12 @@ router.get('/threads/:id', async (req, res) => {
         attributes: ['name', 'avatarPath'],
         required: true
       }});
-    const posts = postData.map((post) => post.get({ plain: true }));
 
+    const posts = postData.map((post) => post.get({ plain: true }));
     res.render('thread', {
       ...thread,
       posts,
+      author,
       logged_in: req.session.logged_in,
       current_user_id: currentUserId
     });

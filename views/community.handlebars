@@ -1,80 +1,105 @@
 <link rel="stylesheet" href="/css/style.css">
 
-  <div class="pb-2">
-  <h1 class="is-size-5">{{name}}</h1>
-  </div>
-<div class="tv-show">
-  <div class="search-img">
-    <img src="{{image}}" alt="We could not find an image for this show!">
-  </div>
-  <div class="show-summary">
-    {{#if summary}}
-    <div class= "pb-4">{{{summary}}}</div>
-    {{/if}}
 
-    {{#if status}}
-    <div>
-      <p>Status: {{status}}</p>
-    </div>
-    {{/if}}
-
-    {{#if premiere}}
-    <div>
-      <p>Premiere date: {{format_date premiere}}</p>
-    </div>
-    {{/if}}
-    {{#if ended}}
-    <div>
-      <p>End Date: {{format_date ended}}</p>
-    </div>
-    {{/if}}
-    {{#if runtime}}
-    <div>
-      <p>Runtime: {{runtime}} minutes</p>
-    </div>
-    {{/if}}
-    {{#if officialSite}}
-    <div>
-      <p>Official site: <a href="{{officialSite}}"> {{officialSite}}</p></a>
-    </div>
-    {{/if}}
-  </div>
-
-</div>
-</div>
+    <div class="pb-2">
+      <div class="is-size-5">
+        <h1>{{name}}</h1>
+      </div>
+      {{#if logged_in}}
+      {{#if subscriber}}
+      <div class="subscribe-button-container">
+        <p>Member since {{format_date subscriber.date_created}}</p>
+      </div>
+      {{else}}
+      <div class="subscribe-button-container">
+        <button type="submit">Join this Community</button>
+      </div>
+      {{/if}}
+      {{/if}}
 
 
-<div class="community-container">
-<div class="com-box">
-  <h3>Top Conversations:</h3>
+      <div class="tv-show">
+        <div class="community-container">
+          <div class="search-img">
+            <img src="{{image}}" alt="Promotional image for {{name}}">
+          </div>
+          <div class="show-summary">
+            {{#if summary}}
+            <div class="pb-4">{{{summary}}}</div>
+            {{/if}}
+            {{#if status}}
+            <div>
+              <p>Status: {{status}}</p>
+            </div>
+            {{/if}}
+            {{#if premiere}}
+            <div>
+              <p>Premiere date: {{format_date premiere}}</p>
+            </div>
+            {{/if}}
+            {{#if ended}}
+            <div>
+              <p>End Date: {{format_date ended}}</p>
+            </div>
+            {{/if}}
+            {{#if runtime}}
+            <div>
+              <p>Runtime: {{runtime}} minutes</p>
+            </div>
+            {{/if}}
+            {{#if officialSite}}
+            <div>
+              <p>Official site: {{officialSite}}</p>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
 
-  {{#each threads as |threads|}}
-  <div>
-    <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
-  </div>
-  <div>
-  </div>
-  {{/each}}
-  <a href="{{id}}/threads">See More Conversations...</a>
-</div>
 
-{{#if reviews.length}}
-<div class="col-md-6 blog-list">
-<div class="com-box">
-  <h3>Top Reviews:</h3>
 
-  {{#each reviews as |review|}}
-  <div>
-    <a href="/reviews/{{review.id}}">{{review.subject}}</a>
-  </div>
-  <div>
-  </div>
-  {{/each}}
-  <a href="{{id}}/reviews">See More Reviews...</a>
-</div>
-{{/if}}
-</div>
-</div>
 
-{{!--
-<script src="./js/dashboard.js"></script> --}}
+      <div class="community-container">
+        <div class="com-box">
+          <h3>Top Reviews:</h3>
+
+          {{#each reviews as |review|}}
+          <div class="row mb-2">
+            <a href="/reviews/{{review.id}}">{{review.subject}}</a>
+          </div>
+          <div class="row mb-2">
+          </div>
+          {{/each}}
+          {{#if reviews.length}}
+          <a href="/community/{{id}}/reviews">See All Reviews...</a>
+          {{else}}
+          <a href="{{id}}/newreview">Write the first Review!</a>
+          {{/if}}
+        </div>
+
+        <div class="com-box">
+          <h3>Top Conversations:</h3>
+
+          {{#each threads as |threads|}}
+          <div>
+            <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
+          </div>
+          <div class="row mb-2">
+          </div>
+          {{/each}}
+          {{#if threads.length}}
+          <a href="/community/{{id}}/threads">See All Conversations...</a>
+          {{else}}
+          <a href="{{id}}/newthread">Start the Conversation...</a>
+          {{/if}}
+        </div>
+      </div>
+
+
+
+      {{#if logged_in}}
+      {{#if subscriber}}
+      {{else}}
+      <script src="/js/subscribe.js"></script>
+      {{/if}}
+      {{/if}}

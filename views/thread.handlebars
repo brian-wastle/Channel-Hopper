@@ -1,9 +1,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<div >
+<div>
+    <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
+    <h3 class = "mt-8 pb-6 is-size-5">{{subject}}</h3>
+    <br>
+    <img src="{{author.avatarPath}}" alt="user avatar" width="30" height="30">
+    <span>{{author.name}} on {{format_date date_created}}</span>
     
-    <h3 class = "mt-8 pb-6 is-size-5">{{subject}}:</h3>
 
 
 
