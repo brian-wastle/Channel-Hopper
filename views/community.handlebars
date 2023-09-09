@@ -51,7 +51,7 @@
       <a href="{{id}}/threads">See More Conversations...</a>
     </div>
 
-    {{#if reviews.length}}
+    
     <div class="col-md-6 blog-list">
 
       <h3>Top Reviews:</h3>
@@ -63,9 +63,12 @@
       <div class="row mb-2">
       </div>
       {{/each}}
+      {{#if reviews.length}}
       <a href="{{id}}/reviews">See More Reviews...</a>
-    </div>
+    {{else}}
+    <a href="{{id}}/newreview">Write the first Review!</a>
     {{/if}}
+    </div>
   
 
   

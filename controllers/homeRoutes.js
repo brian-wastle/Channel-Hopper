@@ -9,18 +9,48 @@ const sequelize = require('../config/connection');
 router.get('/', async (req, res) => {
   try {
     // get the two most recent communities
-    let communityData = await Communities.findAll({
-      order: [['id', 'ASC']], // Order by 'id' column in descending order
-    });
-    
-    const communityOne = communityData.slice(0, 1);
-    const communitiesOne = communityOne.map((community) => community.get({ plain: true }));
+    // let communityData = await Communities.findAll({
+    //   order: [['id', 'ASC']], // Order by 'id' column in descending order
+    // });
 
-    communityDataTwo = await Communities.findAll({
-      order: [['id', 'DESC']], // Order by 'id' column in descending order
-    });
-    const communityTwo = communityDataTwo.slice(1, 2);
-    const communitiesTwo = communityTwo.map((community) => community.get({ plain: true }));
+
+    const query = `
+    SELECT
+        communities.id,
+        communities.name,
+        communities.image,
+        COUNT(threads.id) AS thread_count
+    FROM
+        communities
+    LEFT JOIN
+        threads
+    ON
+        communities.id = threads.community_id
+    GROUP BY
+        communities.id, communities.name
+    ORDER BY
+        thread_count DESC;
+  `;
+  
+  let communityData = await sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
+  })
+
+ 
+
+    
+    const communitiesOne = communityData.slice(0, 1);
+   
+
+
+  //   let communityDataTwo = await sequelize.query(query, {
+  //   type: sequelize.QueryTypes.SELECT,
+  // })
+
+
+
+    const communitiesTwo = communityData.slice(1, 2);
+
 
     // find the threads from community 1
 
@@ -85,10 +115,6 @@ LIMIT 1;
         });
 
     const reviewsCommunityTwo = resultsTwo;
-
-console.log(reviewsCommunityTwo)
-
-
 
     res.render('homepage', {
       communitiesOne,
