@@ -1,8 +1,12 @@
 <div>
-    <h1>{{community.name}}</h1>
+    <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
 
     <div>
-        <h3>{{subject}}:</h3>
+        <h3>{{subject}}</h3>
+
+        <img src="{{user.avatarPath}}" alt="user avatar" width="30" height="30">
+        <span>{{user.name}} on {{format_date date_created}}</span>
+
     </div>
 
     <div>
@@ -10,14 +14,16 @@
     </div>
     <br>
     <p> {{plusones}} plusOnes added</p>
-    {{#if plus_one_render}}
-    <div class="plusone-container">
-    <a href="" class="plusOneButton">Add a plusOne</a>
-    </div>
-    {{else}}
-    <div class="plusone-container-null">
-    <p>You added a plusOne to this post!</p>
-    </div>
+    {{#if logged_in}}
+        {{#if plus_one_render}}
+        <div class="plusone-container">
+        <a href="" class="plusOneButton">Add a plusOne</a>
+        </div>
+        {{else}}
+        <div class="plusone-container-null">
+        <p>You added a plusOne to this post!</p>
+        </div>
+        {{/if}}
     {{/if}}
     </div>
 

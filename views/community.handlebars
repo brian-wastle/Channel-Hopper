@@ -61,7 +61,12 @@
       <div class="row mb-2">
       </div>
       {{/each}}
-      <a href="{{id}}/threads">See More Conversations...</a>
+      {{#if threads.length}}
+      <a href="/community/{{id}}/threads">See All Conversations...</a>
+    {{else}}
+    <a href="{{id}}/newthread">Start the Conversation...</a>
+    {{/if}}
+      
     </div>
 
     
@@ -77,7 +82,7 @@
       </div>
       {{/each}}
       {{#if reviews.length}}
-      <a href="{{id}}/reviews">See More Reviews...</a>
+      <a href="/community/{{id}}/reviews">See All Reviews...</a>
     {{else}}
     <a href="{{id}}/newreview">Write the first Review!</a>
     {{/if}}
