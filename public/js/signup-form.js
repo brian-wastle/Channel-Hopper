@@ -47,4 +47,3 @@ document
 //   .querySelector('#login-button')
 //   .addEventListener('click', loginButtonHandler);
 
-
