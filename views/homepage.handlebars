@@ -1,49 +1,63 @@
-
-<div>
-<p>Block of Welcome Text!</p>
+<div class="welcome">
+    <h2> Discover, Discuss, and Delve into the World of Television!</h2>
 </div>
 
-<div>
-    <h2>Trending Communities</h2>
+<p> We're thrilled to have you join us at Channel Hopper, the ultimate destination for TV enthusiasts like you. Whether
+    you're a die-hard fan of classic sitcoms, addicted to gripping dramas, or fascinated by the latest sci-fi series,
+    this is the place to be.
+
+    At Couch Hopper, we're all about building a vibrant community where you can share your thoughts, opinions, and passion
+    for your favorite shows. </p>
 </div>
 
-<div>
-    <h3>
-        <a href="/community/{{communitiesOne.[0].id}}">{{communitiesOne.[0].name}}</a>
-    </h3>
-    <p>Latest Thread:</p>
-    <div>
-        <a href="/threads/{{threadsCommunityOne.[0].id}}">{{threadsCommunityOne.[0].subject}}</a>
-        <br>
-        <p>posted by: {{threadsCommunityOne.[0].user.name}} on {{format_date threadsCommunityOne.[0].date_created}}</p>
+<div class="home-container">
+
+<img src="/assets/images/tv.jpg" alt="remote control pointed at tv" width="650" height="300" class="tvpic">
+
+<div class="main-home">
+    <div class="is-size-5">
+        <h2>Trending Communities:</h2>
     </div>
-    <p>Latest Review:</p>
+
     <div>
-        <a href="/reviews/{{reviewsCommunityOne.id}}">{{reviewsCommunityOne.subject}}</a>
-        <br>
-        <p>posted by: {{reviewsCommunityOne.name}} on {{format_date threadsCommunityOne.date_created}}</p>
+        <h3>
+            <a href="/community/{{communitiesOne.[0].id}}">{{communitiesOne.[0].name}}</a>
+        </h3>
+        <p class="is-size-5">Latest Thread:</p>
+        <div>
+            <a href="/threads/{{threadsCommunityOne.[0].id}}">{{threadsCommunityOne.[0].subject}}</a>
+            <br>
+            <p>posted by: {{threadsCommunityOne.[0].user.name}} on {{format_date threadsCommunityOne.[0].date_created}}
+            </p>
+        </div>
+        <p class="is-size-5">Latest Review:</p>
+        <div>
+            <a href="/reviews/{{reviewsCommunityOne.id}}">{{reviewsCommunityOne.subject}}</a>
+            <br>
+            <p>posted by: {{reviewsCommunityOne.name}} on {{format_date threadsCommunityOne.date_created}}</p>
+        </div>
     </div>
+
+    <div>
+        <h3>
+            <a href="/community/{{communitiesTwo.[0].id}}">{{communitiesTwo.[0].name}}</a>
+        </h3>
+        <p class="is-size-5">Latest Thread:</p>
+        <div>
+            <a href="/threads/{{threadsCommunityTwo.[0].id}}">{{threadsCommunityTwo.[0].subject}}</a>
+            <br>
+            <p>posted by: {{threadsCommunityTwo.[0].user.name}} on {{format_date threadsCommunityTwo.[0].date_created}}
+            </p>
+
+        </div>
+        <p class="is-size-5">Latest Review:</p>
+        <div>
+            <a href="/reviews/{{reviewsCommunityTwo.id}}">{{reviewsCommunityTwo.subject}}</a>
+            <br>
+            <p>posted by: {{reviewsCommunityTwo.name}} on {{format_date reviewsCommunityTwo.date_created}}</p>
+        </div>
+    </div>
+
 </div>
-
-<div>
-    <h3>
-        <a href="/community/{{communitiesTwo.[0].id}}">{{communitiesTwo.[0].name}}</a>
-    </h3>
-    <p>Latest Thread:</p>
-    <div>
-         <a href="/threads/{{threadsCommunityTwo.[0].id}}">{{threadsCommunityTwo.[0].subject}}</a>
-        <br>
-        <p>posted by: {{threadsCommunityTwo.[0].user.name}} on {{format_date threadsCommunityTwo.[0].date_created}}</p>
-       
-    </div>
-    <p>Latest Review:</p>
-    <div>
-        <a href="/reviews/{{reviewsCommunityTwo.id}}">{{reviewsCommunityTwo.subject}}</a>
-        <br>
-        <p>posted by: {{reviewsCommunityTwo.name}} on {{format_date reviewsCommunityTwo.date_created}}</p>
-    </div>
 </div>
-
-
-
-<script src="/js/homepage.js"></script>
+    <script src="/js/homepage.js"></script>

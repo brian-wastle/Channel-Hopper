@@ -1,13 +1,13 @@
 * {
   color: #0c3c52;
 }
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
 
+header {
+  background-color: #343A40;
 }
 
-nav {
-  background-color: #DEE2E6;
+.nav-color {
+  background-color: #343A40;
 }
 
 body {
@@ -109,4 +109,51 @@ textarea {
     background-color: #F8F9FA;
     width: 300px;
     text-align: center;
+}
+
+.welcome {
+  font-size: 25px;;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 15px;;
+}
+
+.home-container {
+  display: flex;
+}
+
+.main-home {
+  margin-top: 70px;
+  margin-left: 80px;
+}
+
+.tvpic {
+  margin-top: 70px;
+}
+
+.tv-show {
+  display: flex;
+  align-items: flex-start;
+}
+
+.show-summary {
+  flex: 1;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+.search-img {
+  max-width: 100%;
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+
+.searchbar {
+  margin-top: 50px;
+  margin-left: 500px;
+  padding-bottom: 50px
+}
+
+.show-info {
+  padding-top: 20px;
 }

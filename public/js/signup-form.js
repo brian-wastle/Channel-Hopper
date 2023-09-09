@@ -13,7 +13,7 @@
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/profile');
       } else {
         alert(response.statusText);
       }
@@ -22,13 +22,13 @@
 
 
 function loginButtonHandler() {
-    document.location.replace('/login');
+    document.location.replace('/signup');
 }
   
 document
   .querySelector('.signup-form')
   .addEventListener('submit', signupFormHandler);
 
-document
-  .querySelector('#login-button')
-  .addEventListener('click', loginButtonHandler);
+// document
+//   .querySelector('#login-button')
+//   .addEventListener('click', loginButtonHandler);

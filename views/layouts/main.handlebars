@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Group Project 2</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-<link rel="stylesheet" href="./css/style.css">
+  <title>Channel Hopper: You're watching, we're listening!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-<body>
-  <body>
-  <header>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+<body>
+  <header>
+    <nav class="navbar nav-color" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <a class="navbar-item">
+          <img src="/assets/images/logo.png" width="140" height="46">
         </a>
 
       </div>
-
+      {{#if logged_in}}
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" id="homepage">
@@ -32,72 +31,65 @@
             Profile
           </a>
 
-          <div class="navbar-item is-hoverable" id="gotoSearch">
-            <a class="navbar-link">
-              Search
-            </a>
+          <a class="navbar-item" id="gotoSearch">
+            Search
+          </a>
 
+          <hr class="navbar-divider">
 
-              <hr class="navbar-divider">
-              
-            </div>
-          </div>
         </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light" id="login">
-                Log in
-              </a>
-            </div>
+      </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-black" id="logout">
+              <strong>Logout</strong>
+            </a>
           </div>
         </div>
       </div>
+      </div>
+      {{else}}
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-black" id="signup">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" id="login">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/if}}
     </nav>
-
-
-
   </header>
 
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Group Project 2</a>
-      </h1>
-      <nav>
-        <button id="gotoSearch">Go to Search</button>
-        <!-- Conditionally render login or logout links -->
-        <button class="no-button" id="homepage">home</button>
-        {{#if logged_in}}
-        <button class="no-button" id="dashboard">profile</button>
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <button class="no-button" id="login">login</button>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
- 
-   
-    <script src="/js/main.js"></script>
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{else}}
-  <script src="/js/login.js"></script>
-  {{/if}}
- 
+
+
+  <main class="container container-fluid mt-5">
+    <!-- Render the sub layout -->
+    {{{ body }}}
+  </main>
+</body>
+<footer>
+
+</footer>
+</div>
+
+
+
+{{#if logged_in}}
+<script src="/js/main.js"></script>
+<!-- Render script for logged in users only -->
+<script src="/js/logout.js"></script>
+
+{{else}}
+<script src="/js/login.js"></script>
+{{/if}}
+
 </body>
 
 </html>
