@@ -8,11 +8,6 @@ const sequelize = require('../config/connection');
 //render the homepage
 router.get('/', async (req, res) => {
   try {
-    // get the two most recent communities
-    // let communityData = await Communities.findAll({
-    //   order: [['id', 'ASC']], // Order by 'id' column in descending order
-    // });
-
 
     const query = `
     SELECT
@@ -35,26 +30,10 @@ router.get('/', async (req, res) => {
   let communityData = await sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   })
-
- 
-
-    
-    const communitiesOne = communityData.slice(0, 1);
-   
-
-
-  //   let communityDataTwo = await sequelize.query(query, {
-  //   type: sequelize.QueryTypes.SELECT,
-  // })
-
-
-
-    const communitiesTwo = communityData.slice(1, 2);
-
+  const communitiesOne = communityData.slice(0, 1);
+  const communitiesTwo = communityData.slice(1, 2);
 
     // find the threads from community 1
-
-      
     const threadDataOne = await Threads.findAll({
       where: {
         community_id: communitiesOne[0].id,
@@ -81,8 +60,8 @@ router.get('/', async (req, res) => {
     });
     const threadsCommunityTwo = threadDataTwo.map((thread) => thread.get({ plain: true }));
 
-    //find the reviews from community 1
 
+    //find the reviews from community 1
       const queryOne = `
       SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
@@ -100,7 +79,6 @@ LIMIT 1;
 
 
     //find the reviews from community 2
-
 const queryTwo = `
       SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
@@ -162,11 +140,12 @@ router.get('/profile', withAuth, async (req, res) => {
         {
           model: Users,
           through: CommunityUsers, 
-          where: { id: currentUserId },
+          where: { id: req.session.user_id },
         },
       ],
     });
     const communities = commData.map((community) => community.get({ plain: true }));
+    console.log(req.session)
 //get all user's threads
     const threadData = await Threads.findAll({ where: { user_id: currentUserId } });
     const threads = threadData.map((thread) => thread.get({ plain: true }));
