@@ -5,7 +5,7 @@
 <div class="profile">
 
   <div class="my-communities"> 
-    <h3>My Communities:</h3>
+    <h3 class="is-size-4 is-underlined profile-heading">My Communities:</h3>
     {{#if communities.length}}
     {{#each communities as |communities|}}
     <div>
@@ -17,8 +17,8 @@
     {{/if}}
   </div>
 
-  <div class="my-conversations">
-    <h3>My Conversations:</h3>
+  <div class="my-communities">
+    <h3 class="is-size-4 is-underlined profile-heading">My Conversations:</h3>
     {{#if threads.length}}
     {{#each threads as |thread|}}
     <div class="row mb-2">
@@ -28,8 +28,8 @@
     {{/if}}
   </div>
 
-  <div class="my-reviews">
-    <h3>My Reviews:</h3>
+  <div class="my-communities">
+    <h3 class="is-size-4 is-underlined profile-heading">My Reviews:</h3>
     {{#if reviews.length}}
     {{#each reviews as |review|}}
     <div class="row mb-2">
