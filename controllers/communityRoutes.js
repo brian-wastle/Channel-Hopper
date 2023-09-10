@@ -164,7 +164,7 @@ router.get('/:id/threads', async (req, res) => {
 
     const userData = await Users.findAll({ where: { id: threads[0].user_id } });
     const users = userData.map((thread) => thread.get({ plain: true }));
-    console.log(threads)
+
     res.render('conversations', { threads, users, community, logged_in: req.session.logged_in })
 
   } catch (err) {

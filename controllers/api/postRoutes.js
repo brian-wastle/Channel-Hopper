@@ -25,7 +25,7 @@ router.post('/:id', async (req, res) => {
     const newPost = await Posts.create({
       ...req.body,
       thread_id:req.params.id,
-      // user_id: req.session.user_id,
+      user_id: req.session.user_id,
     });
 
     res.status(200).json('its a hit!');

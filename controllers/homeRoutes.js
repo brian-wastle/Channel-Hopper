@@ -217,7 +217,7 @@ router.get('/reviews/:id', async (req, res) => {
     } else {
       plusOneRender = true;
     }
-    console.log(reviews)
+
     res.render('review', {
       ...reviews,
       logged_in: req.session.logged_in,
@@ -327,7 +327,7 @@ router.get('/threads/:id', async (req, res) => {
     const posts = await sequelize.query(postQuery, {
       type: sequelize.QueryTypes.SELECT,
     });
-console.log(thread)
+
 
     res.render('thread', {
       thread,
