@@ -8,7 +8,7 @@
     <h3 class="is-size-5 pb-4">Community Conversations:</h3>
 
     {{#each threads as |threads|}}
-    <div class="row mb-2 box scroll-hover">
+    <div class="row mb-2 box box-syle">
       <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
       <p>by {{threads.user.name}} on {{format_date threads.date_created}}</p>
     </div>
