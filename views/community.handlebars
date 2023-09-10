@@ -11,7 +11,7 @@
         <p>Member since {{format_date subscriber.date_created}}</p>
       </div>
       {{else}}
-      <div class="subscribe-button-container">
+      <div>
         <button type="submit" class="joinCommunity">Join this Community</button>
       </div>
       {{/if}}
@@ -90,7 +90,7 @@
           {{#if threads.length}}
           <a href="/community/{{id}}/threads">See All Conversations...</a>
           {{else}}
-          <a href="{{id}}/newthread">Start the Conversation...</a>
+          <a href="/community/{{id}}/newthread">Start the Conversation...</a>
           {{/if}}
         </div>
       </div>

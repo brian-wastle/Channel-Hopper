@@ -2,25 +2,27 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="thread-container">
-    <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
-    <h3 class = "mt-8 pb-6 is-size-5">{{subject}}</h3>
+    <a href="/community/{{thread.[0].community_id}}/"><h1>{{thread.[0].name}}</h1></a>
+    
     <br>
     <img src="{{author.avatarPath}}" alt="user avatar" width="30" height="30">
-    <span>{{author.name}} on {{format_date date_created}}</span>
-    
+    <span>{{author.name}} said:</span>
+    <h3>{{thread.[0].subject}}</h3>
+    <p>on {{format_date date_created}}</p>
 
+    <div>
+        
+        <br><br>
+        {{#each posts as |post|}}
+        <div class="pb-4 is-italic">
 
-
-        <div>
-            <h3 class="pb-4">Replies:</h3>
-
-            {{#each posts as |post|}}
-            <div class="pb-4 is-italic">
-            {{body}}
-            <br>
-            </div>
-            {{/each}}
+        <p>{{user_name}} said: </p>
+        {{body}}
+        <p> on {{format_date date_created}}</p>
+        <br>
         </div>
+        {{/each}}
+    </div>
 
     <div>
         <form class="form new-comment-form">

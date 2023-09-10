@@ -1,14 +1,20 @@
 
-jQuery (document).ready(function() {
-    $("#searchButton").on('click', function() {
-        let query = $("#searchInput").val();
+// jQuery (document).ready(function() {
+//     $("#searchButton").on('click', function() {
+//         let query = $("#searchInput").val();
         
-document.location.replace(`/search?q=${query}`)
+// document.location.replace(`/search?q=${query}`)
        
+//     });
+// });
+
+$(function() {
+    $("#searchButton").on('click', function() {
+      const query = $("#searchInput").val();
+      const searchUrl = `/search?q=${query}`;
+      window.location.replace(searchUrl);
     });
-});
-
-
+  });
 
 // function renderResults(data) {
 //     let shows = data.map(entry => entry.show); 

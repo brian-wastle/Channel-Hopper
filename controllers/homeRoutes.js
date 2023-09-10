@@ -109,6 +109,7 @@ LIMIT 1;
   }
 });
 
+
 //render the user's profile page
 router.get('/profile', withAuth, async (req, res) => {
   
@@ -161,6 +162,7 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 
 //Show a single Review
@@ -268,36 +270,67 @@ router.get('/threads/:id', async (req, res) => {
       ],
     });
 
-
-
-    const threadData = await Threads.findOne({ where: { id: req.params.id } }, {
-      include: [{
-        model: Users,
-        where: { id: Sequelize.col('Threads.user_id') },
-        attributes: ['id', 'name', 'avatarPath'],
-      }]
-    });
+    // const threadData = await Threads.findOne({ where: { id: req.params.id } }, {
+      
+    // });
     
-    const thread = threadData.get({ plain: true });
+    const threadQuery = `
+  SELECT
+    threads.id,
+    threads.subject,
+    threads.date_created,
+    communities.image,
+    communities.name,
+    users.name as user_name,
+    users.id as user_id,
+    communities.id as community_id
+  FROM threads
+  LEFT JOIN users ON threads.user_id = users.id
+  LEFT JOIN communities ON threads.community_id = communities.id
+  WHERE threads.id = ${req.params.id}
+`;
+
+  const thread = await sequelize.query(threadQuery, {
+    type: sequelize.QueryTypes.SELECT,
+  });
+
 
 
     const authorData = await Users.findOne({
-      where: { id: thread.user_id },
+      where: { id: thread[0].user_id },
       attributes: ['name', 'avatarPath'], // Specify the attributes you want to retrieve
     });
 
     const author = authorData.get({ plain: true });
 
-    const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
-      include: {
-        model: Users,
-        attributes: ['name', 'avatarPath'],
-        required: true
-      }});
+    // const postData = await Posts.findAll({ where: { thread_id: req.params.id } }, {
+    //   include: {
+    //     model: Users,
+    //     attributes: ['name', 'avatarPath'],
+    //     required: true
+    //   }});
+    //   const posts = postData.map((post) => post.get({ plain: true }));
 
-    const posts = postData.map((post) => post.get({ plain: true }));
+
+      const postQuery = `
+      SELECT
+        posts.id,
+        posts.body,
+        posts.date_created,
+        users.name as user_name
+      FROM posts
+      LEFT JOIN users ON posts.user_id = users.id
+      LEFT JOIN threads ON posts.thread_id = threads.id
+      WHERE threads.id = ${req.params.id}
+    `;
+
+    const posts = await sequelize.query(postQuery, {
+      type: sequelize.QueryTypes.SELECT,
+    });
+console.log(thread)
+
     res.render('thread', {
-      ...thread,
+      thread,
       posts,
       author,
       logged_in: req.session.logged_in,
