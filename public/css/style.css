@@ -191,6 +191,11 @@ textarea {
   align-items: flex-start;
 }
 
+.communityThreadName{
+  font-size: 40px;
+ color: #0C3C52;
+}
+
 .comReviewName {
   font-size: 50px;
   margin-bottom: 20px;
@@ -251,7 +256,7 @@ textarea {
 
 
 /* media queries */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1024px) {
 
   /* home/main elements */
  .navbar {
@@ -325,12 +330,15 @@ textarea {
   /* search page elements */
   .searchbar {
     position: relative;
-    right: 250px;
+    right: 325px;
+    width: 50%;
   }
 
   .tv-show {
     margin: 50px 50px;
   }
+  
+
 
   /* community page elements */
   .communityInfo {
@@ -361,6 +369,11 @@ textarea {
     margin-bottom: 30px;
   }
 
+  .com-box {
+    width: 80%;
+    margin-bottom: 30px;
+  }
+
   /* review elements */
   .reviewContainer {
     display: flex;
@@ -368,6 +381,7 @@ textarea {
     align-items: center;
     margin: 10px 50px;
   }
+  
 
   #reviewShow {
 
@@ -405,6 +419,31 @@ textarea {
     align-items: center;
 
   }
+.commentBox{
+  width: 60%;
+}
+  .communityThreadContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.communityThreads{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+.communityThreadNameContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.communityThreadName{
+  font-size: 32px;
+
+}
+
 }
 
 .homepage-title {
@@ -425,4 +464,62 @@ textarea {
 
 .content-container {
   margin-top: 20px;
+}
+
+@media screen and (min-width:480px) and (max-width: 768px) {
+  .searchImage{
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+  .tv-show{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  
+}
+
+@media screen and (max-width:480px) {
+  .com-box{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    position: relative;
+   
+  }
+
+  .thread-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .searchImage{
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+  .tv-show{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .threadReplies{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .threadSubject{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0px;
+    position: relative;
+    left: 15px;
+  }
 }
