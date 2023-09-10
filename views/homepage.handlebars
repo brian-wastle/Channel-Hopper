@@ -23,18 +23,18 @@
         <h3>
             <a href="/community/{{communitiesOne.[0].id}}">{{communitiesOne.[0].name}}</a>
         </h3>
-        <p class="is-size-5">Latest Thread:</p>
+        <p class="is-size-5 pt-2">Latest Thread:</p>
         <div>
             <a href="/threads/{{threadsCommunityOne.[0].id}}">{{threadsCommunityOne.[0].subject}}</a>
             <br>
-            <p>posted by: {{threadsCommunityOne.[0].user.name}} on {{format_date threadsCommunityOne.[0].date_created}}
+            <p class="is-underlined">posted by: {{threadsCommunityOne.[0].user.name}} on {{format_date threadsCommunityOne.[0].date_created}}
             </p>
         </div>
-        <p class="is-size-5">Latest Review:</p>
+        <p class="is-size-5 pt-2">Latest Review:</p>
         <div>
             <a href="/reviews/{{reviewsCommunityOne.id}}">{{reviewsCommunityOne.subject}}</a>
             <br>
-            <p>posted by: {{reviewsCommunityOne.name}} on {{format_date threadsCommunityOne.date_created}}</p>
+            <p class="is-underlined">posted by: {{reviewsCommunityOne.name}} on {{format_date threadsCommunityOne.date_created}}</p>
         </div>
     </div>
 
@@ -42,19 +42,19 @@
         <h3>
             <a href="/community/{{communitiesTwo.[0].id}}">{{communitiesTwo.[0].name}}</a>
         </h3>
-        <p class="is-size-5">Latest Thread:</p>
+        <p class="is-size-5 pt-2">Latest Thread:</p>
         <div>
             <a href="/threads/{{threadsCommunityTwo.[0].id}}">{{threadsCommunityTwo.[0].subject}}</a>
             <br>
-            <p>posted by: {{threadsCommunityTwo.[0].user.name}} on {{format_date threadsCommunityTwo.[0].date_created}}
+            <p class="is-underlined">posted by: {{threadsCommunityTwo.[0].user.name}} on {{format_date threadsCommunityTwo.[0].date_created}}
             </p>
 
         </div>
-        <p class="is-size-5">Latest Review:</p>
+        <p class="is-size-5 pt-2">Latest Review:</p>
         <div>
             <a href="/reviews/{{reviewsCommunityTwo.id}}">{{reviewsCommunityTwo.subject}}</a>
             <br>
-            <p>posted by: {{reviewsCommunityTwo.name}} on {{format_date reviewsCommunityTwo.date_created}}</p>
+            <p class="is-underlined">posted by: {{reviewsCommunityTwo.name}} on {{format_date reviewsCommunityTwo.date_created}}</p>
         </div>
     </div>
 

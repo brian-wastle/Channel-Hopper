@@ -49,7 +49,7 @@
             {{/if}}
             {{#if officialSite}}
             <div>
-              <p>Official site: {{officialSite}}</p>
+              <a href="{{officialSite}}">Official site: {{officialSite}}</a>
             </div>
             {{/if}}
           </div>
@@ -64,7 +64,7 @@
           <h3>Top Reviews:</h3>
 
           {{#each reviews as |review|}}
-          <div class="row mb-2">
+          <div>
             <a href="/reviews/{{review.id}}">{{review.subject}}</a>
           </div>
           <div class="row mb-2">
