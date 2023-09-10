@@ -1,5 +1,4 @@
 
-
 const getHomepage = async () => {
   const response = await fetch('/');
 
@@ -30,4 +29,15 @@ document.querySelector('#homepage').addEventListener('click', getHomepage);
 if(document.getElementById('dashboard')){
   document.querySelector('#dashboard').addEventListener('click', getDashboard);
 }
+
+
+//navbar menu for mobile
+
+const burgerMenu = document.querySelector(".navbar-burger");
+const navLinks = document.querySelector(".navbar-menu");
+
+
+burgerMenu.addEventListener('click', () => {
+navLinks.classList.toggle('is-active');
+})
 
