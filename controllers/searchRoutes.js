@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const dayjs = require('dayjs');
 const withAuth = require('../utils/auth');
+const { Searches } = require('../models');
+const sequelize = require('../config/connection');
 
 router.get('/', async (req, res) => { 
     
@@ -67,5 +69,53 @@ router.get('/', async (req, res) => {
     })
 
 });
+
+
+//save searches to the searches table
+router.post('/', async (req, res) => { 
+
+// Define the new search query
+const newQuery = req.query.q;
+
+// Start a transaction
+sequelize.transaction(async (newSearch) => {
+  try {
+    // Insert the new search query
+    await Searches.create({ query: newQuery }, { transaction: newSearch });
+
+    // Check the number of rows in the table
+    const rowCount = await Searches.count();
+
+    // If there are more than 25 rows, delete the top row
+    if (rowCount > 25) {
+      await Searches.destroy({
+        where: {},
+        limit: 1,
+        order: [['id', 'ASC']], // Assuming 'id' is the primary key
+        transaction: newSearch,
+      });
+    }
+
+    // Commit the transaction
+    await newSearch.commit();
+
+    console.log('Search query added and excess rows deleted successfully.');
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    await newSearch.rollback();
+    console.error('Error:', error);
+  }
+});
+
+});
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
