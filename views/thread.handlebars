@@ -3,7 +3,7 @@
 
 <div class="thread-container">
     <a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
-    <h3 class = "mt-8 pb-6 is-size-5">{{subject}}</h3>
+    <h3 class = "mt-10 pb-4 is-size-5">{{subject}}</h3>
     <br>
     <img src="{{author.avatarPath}}" alt="user avatar" width="30" height="30">
     <span>{{author.name}} on {{format_date date_created}}</span>
@@ -12,7 +12,7 @@
 
 
         <div>
-            <h3 class="pb-4">Replies:</h3>
+            <h3 class="pt-4 pb-4">Replies:</h3>
 
             {{#each posts as |post|}}
             <div class="pb-4 is-italic">
@@ -23,20 +23,35 @@
         </div>
 
     <div>
-        <form class="form new-comment-form">
+        <form class="form new-comment-form field">
             <div class="form-group pt-4">
-                <label for="post-body">Add a comment:</label>
+                <label for="post-body label">Add a comment:</label>
                 <br>
-                <textarea class="form-input" id="post-body" name="post-body" rows="10" cols="40"></textarea>
+                <div class="control">
+                <textarea class="form-input textarea" id="post-body" name="post-body" rows="5" cols="10"></textarea>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Add Comment</button>
+            <div class="form-group control pt-4">
+                <button type="submit" class="button is-link is-dark">Add Comment</button>
             </div>
         </form>
     </div>
 
 
 
+  {{!-- <script src="/js/new-post.js"></script>
+
+      <div class="field">
+  <label class="label">Add a comment</label>
+  <div class="control">
+    <textarea class="textarea" placeholder="Textarea"></textarea>
+  </div>
+</div>
+ <div class="control">
+    <button class="button is-link is-dark">Add Comment</button>
+  </div>
 </div>
 
-  <script src="/js/new-post.js"></script>
+
+
+</div> --}}
