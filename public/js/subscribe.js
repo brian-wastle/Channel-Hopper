@@ -23,5 +23,5 @@ const subscribeHandler = async (event) => {
 
   
 document
-.querySelector('.subscribe-button-container')
+.querySelector('.joinCommunity')
 .addEventListener('click', subscribeHandler);

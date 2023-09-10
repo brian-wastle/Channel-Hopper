@@ -4,7 +4,8 @@
 
 * {
   font-family: 'Josefin Sans', sans-serif;
-  font-family: 'Lora', serif;
+  font-family: 'Heebo', sans-serif;
+  /* font-family: 'Lora', serif; */
 }
 
 header {
@@ -37,7 +38,7 @@ footer {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #12668d;
+  color: #12668d; 
   text-decoration: none;
   font-size: 100%;
 }

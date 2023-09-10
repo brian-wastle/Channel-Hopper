@@ -151,10 +151,21 @@ router.get('/:id/threads', async (req, res) => {
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
     const community = communityData.get({ plain: true });
 
-    const threadData = await Threads.findAll({ where: { community_id: req.params.id } });
+    const threadData = await Threads.findAll({
+      where: { community_id: req.params.id },
+      include: [
+        {
+          model: Users,
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
     const threads = threadData.map((thread) => thread.get({ plain: true }));
 
-    res.render('conversations', { threads, community, logged_in: req.session.logged_in })
+    const userData = await Users.findAll({ where: { id: threads[0].user_id } });
+    const users = userData.map((thread) => thread.get({ plain: true }));
+
+    res.render('conversations', { threads, users, community, logged_in: req.session.logged_in })
 
   } catch (err) {
     res.status(500).json(err);

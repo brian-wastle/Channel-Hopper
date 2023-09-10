@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-<a href="/community/{{community.id}}/"><h1>{{community.name}}</h1></a>
+<h1 class="is-size-4 pb-6"><a href="/community/{{community.id}}/">{{community.name}}</a></h1>
 
-<h1 class="is-size-4 pb-6">{{community.name}}</h1>
 
-  <div class="blog-list">
+  <div>
     <h3 class="is-size-5 pb-4">Community Conversations:</h3>
 
     {{#each threads as |threads|}}
     <div class="row mb-2 box scroll-hover">
       <a href="/threads/{{threads.id}}">{{threads.subject}}</a>
+      <p>by {{threads.user.name}} on {{format_date threads.date_created}}</p>
     </div>
     {{/each}}
 
