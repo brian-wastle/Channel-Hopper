@@ -2,6 +2,11 @@
   color: #0c3c52;
 }
 
+* {
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lora', serif;
+}
+
 header {
   background-color: #343A40;
 }
@@ -13,11 +18,18 @@ header {
 body {
   background-color: #ADB5BD;
   min-height: 100vh;
-  
+
 }
 
 header {
   background-color: #8abbdb;
+}
+
+footer {
+  position: sticky;
+  top: 100%;
+  padding: 25px;
+  text-align: center;
 }
 
 .no-button {
@@ -36,18 +48,18 @@ header {
 }
 
 #del-button {
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: 0;
 }
 
 .comment {
-  margin-left: 0; 
+  margin-left: 0;
   margin-right: auto;
   text-align: left;
 }
 
 .username {
-  margin-left: 0; 
+  margin-left: 0;
   margin-right: auto;
   text-align: left;
 }
@@ -79,7 +91,8 @@ textarea {
   border-radius: 25px;
   padding: 10px;
   line-height: 200%;
-  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);
+  ;
   background-color: #F8F9FA;
   width: 300px;
   text-align: center;
@@ -93,30 +106,34 @@ textarea {
   border-radius: 25px;
   padding: 10px;
   line-height: 200%;
-  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);
+  ;
   background-color: #F8F9FA;
   width: 300px;
   text-align: center;
 }
 
 .my-reviews {
-    display: flex;
-    flex-flow: column wrap;
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 10px;
-    line-height: 200%;
-    box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
-    background-color: #F8F9FA;
-    width: 300px;
-    text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);
+  ;
+  background-color: #F8F9FA;
+  width: 300px;
+  text-align: center;
 }
 
 .welcome {
-  font-size: 25px;;
+  font-size: 25px;
+  ;
   text-align: center;
   padding-top: 40px;
-  padding-bottom: 15px;;
+  padding-bottom: 15px;
+  ;
 }
 
 .home-container {
@@ -143,7 +160,7 @@ textarea {
 .showName {
   font-size: 32px;
   position: relative;
- top: -15px;
+  top: -15px;
 }
 
 .show-summary {
@@ -168,20 +185,22 @@ textarea {
   padding-top: 20px;
 }
 
-.com-box  {
+.com-box {
 
-    display: flex;
-    flex-flow: column wrap;
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 10px;
-    line-height: 200%;
-    box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);;
-    background-color: #f8fafa;
-    width: 600px;
-    text-align: center;
-    margin-top: 20px;
-    margin-right: 40px;
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: 200%;
+  box-shadow: 12px 12px 2px 1px rgba(19, 19, 41, 0.2);
+  ;
+  background-color: #f8fafa;
+  width: 600px;
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 
 .community-container {
@@ -189,172 +208,202 @@ textarea {
   align-items: flex-start;
 }
 
-.comReviewName{
+.comReviewName {
   font-size: 50px;
   margin-bottom: 20px;
 }
 
 .avatar-selected {
- 
+
   border: 2px dashed #343A40;
 }
 
-.joinCommunity{
+.joinCommunity {
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #8abbdb;
   border: 1px solid #343A40;
   border-radius: 10px;
   padding: 5px;
-  }
-.logo{
-    border-radius: 7px;
-  }
+}
 
-#homepage, #dashboard, #gotoSearch{
-    color: #8abbdb;
-  }
+.joinCommunity:hover {
+  cursor: pointer;
+}
 
-  #homepage:hover, #dashboard:hover, #gotoSearch:hover{
-    background-color: black;
-  }
-  
-.nameOnCommunity{
-    font-size: 32px;
-    font-weight: bold;
-  }
+.logo {
+  border-radius: 7px;
+}
 
-.subscribe-button-container{
-  margin: 12px 0px ;
+#homepage,
+#dashboard,
+#gotoSearch {
+  color: #8abbdb;
+}
+
+#homepage:hover,
+#dashboard:hover,
+#gotoSearch:hover {
+  background-color: black;
+}
+
+.nameOnCommunity {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.subscribe-button-container {
+  margin: 12px 0px;
 }
 
 
 /* media queries */
-@media screen and (max-width: 991px){
-/* home/main elements */
-.navbar{
-  display: flex;
-  flex-direction: row;
- justify-content: space-between;
-}
+@media screen and (max-width: 991px) {
+
+  /* home/main elements */
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
 
-/* cant get these buttons to display in line with each other, leaving them as is for now because if i don't target them, they disappear. rather have them wrong and on the page than not on the page at all */
-.navbar-menu{
- display: flex;
- flex-direction: row;
- background-color: #343A40;
-}
+  /* cant get these buttons to display in line with each other, leaving them as is for now because if i don't target them, they disappear. rather have them wrong and on the page than not on the page at all */
+  .navbar-menu {
+    display: flex;
+    flex-direction: row;
+    background-color: #343A40;
+  }
 
-.welcome{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.welcome h2, .welcomeMessage{
-  margin: 10px 50px 0px 50px;
-  
-}
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.tvpic{
-  height: 350px;
-  width: 400px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+  .welcome h2,
+  .welcomeMessage {
+    margin: 10px 50px 0px 50px;
 
-.main-home{
+  }
 
-margin-bottom: 60px;
-  margin-top: 20px;
-  margin-left: 0px;
-}
+  .tvpic {
+    height: 350px;
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* profile elements */
-.profile{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  margin-left: 0px;
-}
+  .main-home {
 
-.my-communities, .my-conversations, .my-reviews{
-  width: 300px;
-  margin-bottom: 30px;
-}
-/* search page elements */
-.searchbar{
- position: relative;
- right: 250px;
-}
-.tv-show{
-  margin: 50px 50px;
-}
-/* community page elements */
-.communityInfo{
- display: flex;
- flex-direction: column;
-  align-items: center;
-}
-.nameOnCommunity{
-  font-size: 50px;
-}
-.subscribe-button-container{
-  margin: 0px;
-}
-.tv-show{
-  margin-top: 20px;
-}
-.community-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.conversation-box{
-  margin-bottom: 30px;
-}
-/* review elements */
-.reviewContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 50px;
-}
-#reviewShow{
-  
-  font-size: 50px;
-}
-.reviewSubject{
-  margin-bottom: 30px;
-  font-size: 20px;
-}
-.reviewSubUser{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 26px;
-}
-.comReviewContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-.comReviewName{
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-/* thread elements */
-.thread-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-left: 0px;
+  }
 
-}
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* profile elements */
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 0px;
+  }
+
+  .my-communities,
+  .my-conversations,
+  .my-reviews {
+    width: 300px;
+    margin-bottom: 30px;
+  }
+
+  /* search page elements */
+  .searchbar {
+    position: relative;
+    right: 250px;
+  }
+
+  .tv-show {
+    margin: 50px 50px;
+  }
+
+  /* community page elements */
+  .communityInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nameOnCommunity {
+    font-size: 50px;
+  }
+
+  .subscribe-button-container {
+    margin: 0px;
+  }
+
+  .tv-show {
+    margin-top: 20px;
+  }
+
+  .community-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .conversation-box {
+    margin-bottom: 30px;
+  }
+
+  /* review elements */
+  .reviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 50px;
+  }
+
+  #reviewShow {
+
+    font-size: 50px;
+  }
+
+  .reviewSubject {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  .reviewSubUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+
+  .comReviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .comReviewName {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+
+  /* thread elements */
+  .thread-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
 }
