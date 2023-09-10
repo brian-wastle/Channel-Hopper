@@ -6,6 +6,7 @@ const Calendars = require('./Calendars');
 const Reviews = require('./Reviews');
 const CommunityUsers = require('./CommunityUsers');
 const Plusones = require('./Plusones');
+const Searches = require('./Searches');
 
 //users / communities
 
@@ -112,4 +113,4 @@ Reviews.belongsTo(Users, {
 
 
 
-module.exports = { Users, Communities, Reviews, CommunityUsers, Threads, Posts, Calendars, Plusones};
+module.exports = { Users, Communities, Reviews, CommunityUsers, Threads, Posts, Calendars, Plusones, Searches};
