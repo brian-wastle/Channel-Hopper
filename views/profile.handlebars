@@ -1,15 +1,10 @@
-{{!-- 
-  <div class="profile">  
-  {{#if communities.length}}
-    <div class="col-md-6 blog-list">
---}}
 <div class="welcome">
   <h2>Welcome, {{user.name}}!</h2>
   <img src="{{user.avatarPath}}" alt="" width="100" height="100">
 </div>
 <div class="profile">
 
-  <div class="my-communities">
+  <div class="my-communities"> 
     <h3>My Communities:</h3>
     {{#if communities.length}}
     {{#each communities as |communities|}}
@@ -44,60 +39,3 @@
     {{/if}}
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{!-- 
-
-      <h3>My Communities:</h3>
-
-      {{#each communities as |communities|}}
-      <div class="row mb-2">
-        <a href="/community/{{communities.id}}">{{communities.name}}</a>
-      </div>
-      {{/each}}
-    </div>
-    {{/if}}
-
-  {{#if threads.length}}
-  <div class="col-md-6 blog-list">
-    <h3>My Conversations:</h3>
-
-    {{#each threads as |thread|}}
-    <div class="row mb-2">
-      <a href="/threads/{{thread.id}}">{{thread.subject}}</a>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-
-
-  {{#if reviews.length}}
-  <div class="col-md-6 blog-list">
-    <h3>My Reviews:</h3>
-
-    {{#each reviews as |review|}}
-    <div class="row mb-2">
-      <a href="/reviews/{{review.id}}">{{review.subject}}</a>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
-</div> --}}
-
-{{!-- <script src="./js/script.js"></script> --}}
