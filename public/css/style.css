@@ -88,11 +88,11 @@ textarea {
 .my-communities {
   display: flex;
   flex-flow: column wrap;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 5px;
   padding: 10px;
   line-height: 200%;
-  box-shadow: 5px 5px 2px 1px rgba(19, 19, 41, 0.2);
+  box-shadow: 3px 3px 2px 1px rgba(19, 19, 41, 0.2);
   ;
   background-color: #c7cbd3;
 
