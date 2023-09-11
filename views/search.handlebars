@@ -13,40 +13,16 @@
     </div>
 </div>
 
-<div id="searchResults">
+<div class="popular-searches">
 
-
-    {{#each shows as |obj|}}
-    {{!-- {{log obj}} --}}
-    <div class="tv-show">
-        <div class="search-img">
-            <a href="/community/name/{{obj.api_id}}" data-show-name="{{obj.name}}">
-            <img src="{{obj.image.medium}}" alt="We could not find an image for this show!" class="searchImage">
-        </div>
-        <div class="show-summary">
-                <h1 class="showName">{{obj.name}}</h1>
-            </a>
-            <div>
-                {{{obj.summary}}}
-            </div>
-            <div class="show-info">
-                {{#each obj.messages as |message|}}
-                <div>
-                    <p>{{message}}</p>
-                </div>
-                {{/each}}
-
-            </div>
-            <div>
-                {{obj.id}}
-            </div>
-        </div>
-    </div>
+<h2 class=" is-size-4 popular-search">Most Popular Searches:</h2>
+{{#each queries as |queries|}}
+<p class=" is-size-5 popular-search"><a href="/search/results?q={{queries}}">{{queries}}</a></p>
+{{/each}}
 
 
 
 
-    {{/each}}
 </div>
 
 

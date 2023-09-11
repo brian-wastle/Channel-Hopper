@@ -2,7 +2,7 @@ const Users = require('./Users');
 const Communities = require('./Communities');
 const Threads = require('./Threads');
 const Posts = require('./Posts');
-const Calendars = require('./Calendars');
+
 const Reviews = require('./Reviews');
 const CommunityUsers = require('./CommunityUsers');
 const Plusones = require('./Plusones');
@@ -30,32 +30,6 @@ Users.belongsToMany(Reviews, {
   foreignKey: 'user_id',
   through: Plusones,
 });
-
-
-// users / calendars
-Users.hasOne(Calendars, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE',
-});
-
-Calendars.belongsTo(Users, {
-  foreignKey: 'user_id',
-});
-
-
-// //calendars/communities
-// Calendars.belongsToMany(Communities, { 
-//   foreignKey: 'community_id', 
-//   through: CommunityUsers, 
-//   unique: false 
-// });
-
-// Communities.belongsToMany(Calendars, { 
-//   foreignKey: 'community_id', 
-//   through: CommunityUsers, 
-//   unique: false 
-// });
-
 
 //communities / threads
 Communities.hasMany(Threads, {
@@ -113,4 +87,4 @@ Reviews.belongsTo(Users, {
 
 
 
-module.exports = { Users, Communities, Reviews, CommunityUsers, Threads, Posts, Calendars, Plusones, Searches};
+module.exports = { Users, Communities, Reviews, CommunityUsers, Threads, Posts, Plusones, Searches};

@@ -1,0 +1,56 @@
+
+<p class="how-to is-size-6 pt-4"> Navigating our database of thousands of television programs is easy: You simply search for a show, click 'join this community', and you can immediately start posting reviews and participate in discussion threads. The show that you selected will be added to the 'My Communities' section of your profile so that you can track all of the activity from other Couch Hopper members. </p>
+
+
+<div class="field has-addons searchbar">
+    <div class="control">
+        <input class="input" type="text" id="searchInput" placeholder="Search for a TV show...">
+    </div>
+    <div class="control">
+        <a class="button is-info" id="searchButton">
+            Search
+        </a>
+    </div>
+</div>
+
+<div id="searchResults">
+
+{{#if shows.length}}
+    {{#each shows as |obj|}}
+    {{!-- {{log obj}} --}}
+    <div class="tv-show">
+        <div class="search-img">
+            <a href="/community/name/{{obj.api_id}}" data-show-name="{{obj.name}}">
+            <img src="{{obj.image.medium}}" alt="We could not find an image for this show!" class="searchImage">
+        </div>
+        <div class="show-summary">
+                <h1 class="showName">{{obj.name}}</h1>
+            </a>
+            <div>
+                {{{obj.summary}}}
+            </div>
+            <div class="show-info">
+                {{#each obj.messages as |message|}}
+                <div>
+                    <p>{{message}}</p>
+                </div>
+                {{/each}}
+
+            </div>
+            <div>
+                {{obj.id}}
+            </div>
+        </div>
+    </div>
+    
+    {{/each}}
+{{else}}
+
+{{/if}}
+
+
+
+</div>
+
+
+<script src="/js/search.js"></script>
