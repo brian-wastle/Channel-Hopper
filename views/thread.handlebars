@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="thread-container">
-    <h1><a href="/community/{{community.id}}/">{{community.name}}</a></h1>
+    <a  href="/community/{{thread.[0].community_id}}/"><h1 class="is-size-4 pb-4 mt-6 reviewShowName">{{thread.[0].name}}</h1></a>
     <h3 class = "mt-10 pb-4 is-size-5">{{subject}}</h3>
     <br>
     <img src="{{author.avatarPath}}" alt="user avatar" width="30" height="30">
     <span>{{author.name}} said:</span>
-    <h3 class="threadSubject">{{thread.[0].subject}}</h3>
+    <h3 class="threadSubject is-size-5 ">{{thread.[0].subject}}</h3>
     <p>on {{format_date date_created}}</p>
 
         <div class="threadReplies">
@@ -14,7 +14,7 @@
 
             {{#each posts as |post|}}
             <p>{{user_name}} said:</p> 
-            <div class="pb-4 is-italic">
+            <div class="pb-4 is-size-5 is-italic">
                 <p>on {{format_date date_created}}</p>
             {{body}}
             <br>
