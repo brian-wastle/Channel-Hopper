@@ -6,7 +6,7 @@ const dayjs = require('dayjs');
 
 //Get a single communtiy
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     if (req.session.user_id) {
       var user = await Users.findOne({
@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
         attributes: ['name', 'id'],
       });
     } else {
-      var user;
+     var user;
     }
 
     if (user) {
@@ -60,6 +60,7 @@ router.get('/:id', async (req, res) => {
 
   } catch (err) {
     res.status(500).json(err);
+  
   }
 });
 
@@ -191,7 +192,7 @@ router.get('/:id/reviews', async (req, res) => {
 
 
 //takes user to new thread page
-router.get('/:id/newthread', withAuth, async (req, res) => {
+router.get('/:id/newthread', async (req, res) => {
   try {
 
     res.render('newThread', {
@@ -204,7 +205,7 @@ router.get('/:id/newthread', withAuth, async (req, res) => {
 });
 
 //takes user to new review page
-router.get('/:id/newreview', withAuth, async (req, res) => {
+router.get('/:id/newreview', async (req, res) => {
   try {
 
     res.render('newreview', {
