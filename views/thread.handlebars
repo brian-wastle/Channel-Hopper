@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="thread-container">
-    <h1><a href="/community/{{community.id}}/">{{community.name}}</a></h1>
+    <h1><a href="/community/{{thread.[0].community_id}}/">{{thread.[0].name}}</a></h1>
     <h3 class = "mt-10 pb-4 is-size-5">{{subject}}</h3>
     <br>
     <img src="{{author.avatarPath}}" alt="user avatar" width="30" height="30">

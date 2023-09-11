@@ -191,7 +191,7 @@ router.get('/:id/reviews', async (req, res) => {
 
 
 //takes user to new thread page
-router.get('/:id/newthread', async (req, res) => {
+router.get('/:id/newthread', withAuth, async (req, res) => {
   try {
 
     res.render('newThread', {
@@ -204,7 +204,7 @@ router.get('/:id/newthread', async (req, res) => {
 });
 
 //takes user to new review page
-router.get('/:id/newreview', async (req, res) => {
+router.get('/:id/newreview', withAuth, async (req, res) => {
   try {
 
     res.render('newreview', {

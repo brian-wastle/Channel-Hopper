@@ -234,7 +234,7 @@ router.get('/reviews/:id', async (req, res) => {
 
 //get a single thread
 
-router.get('/threads/:id', async (req, res) => {
+router.get('/threads/:id', withAuth, async (req, res) => {
   try {
     if (req.session.user_id) {
     var user = await Users.findOne({
@@ -328,7 +328,7 @@ router.get('/threads/:id', async (req, res) => {
       type: sequelize.QueryTypes.SELECT,
     });
 
-
+console.log(thread)
     res.render('thread', {
       thread,
       posts,

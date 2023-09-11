@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const withAuth = require('../../utils/auth');
 
 //create a thread
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
 //grab the url, split it into parts on the forward slashes, grab the id from the 3rd index of the new array
       

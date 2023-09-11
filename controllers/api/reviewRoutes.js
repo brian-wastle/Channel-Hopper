@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const withAuth = require('../../utils/auth');
 
 //create a review
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
       const newReview = await Reviews.create({
         ...req.body,

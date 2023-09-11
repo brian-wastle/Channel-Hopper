@@ -65,7 +65,7 @@ router.post('/logout', (req, res) => {
 
 
 //subscribe to a community
-router.post('/subscribe', async (req, res) => {
+router.post('/subscribe', withAuth, async (req, res) => {
   try {
     const newCommunity = await CommunityUsers.create({
       ...req.body,
