@@ -523,3 +523,12 @@ textarea {
     left: 15px;
   }
 }
+
+.popular-searches {
+  margin: auto;
+  width: 50%;
+}
+
+.popular-search {
+text-align: center;
+}

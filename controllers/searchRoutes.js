@@ -4,9 +4,8 @@ const withAuth = require('../utils/auth');
 const { Searches } = require('../models');
 const sequelize = require('../config/connection');
 
-router.get('/', async (req, res) => { 
+router.get('/results', async (req, res) => { 
     
-    console.log(req.query.q)
     let searchTerm = req.query.q
 
      // Check if searchTerm is undefined or empty
@@ -17,7 +16,6 @@ router.get('/', async (req, res) => {
 
   let response = await fetch(`https://api.tvmaze.com/search/shows?q=${searchTerm}`)
   let shows = await response.json()
-//   console.log(shows)
   let processedData = shows.map(showEntry => {
     let show = showEntry.show;
     let result = {
@@ -63,59 +61,80 @@ router.get('/', async (req, res) => {
   
     return result;
 });
-    res.render('search', {
-        shows: processedData,
-        logged_in: req.session.logged_in,
+
+
+
+
+const  query  = req.query.q; // Assuming you send the query as JSON in the request body
+
+  try {
+    // Create a new query entry
+    await Searches.create({ query });
+
+    // Check if there are more than 25 rows
+    const rowCount = await Searches.count();
+    if (rowCount > 25) {
+      // Find the earliest query and delete it
+      const earliestQuery = await Searches.findOne({ order: [['id', 'ASC']] });
+      await earliestQuery.destroy();
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error adding query' });
+  }
+
+
+  try {
+    // Find up to the three most common search queries
+    const mostCommonQueries = await Searches.findAll({
+      attributes: [
+        'query',
+        [sequelize.fn('COUNT', sequelize.col('query')), 'queryCount'],
+      ],
+      group: ['query'],
+      order: [[sequelize.literal('queryCount'), 'DESC']],
+      limit: 3, // Limit the results to the top 3
+    });
+
+    var topQueries = mostCommonQueries.map((result) => result.query);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+
+    res.render('results', {
+      shows: processedData,
+      logged_in: req.session.logged_in,
     })
 
 });
 
+router.get('/', async (req, res) => { 
 
-//save searches to the searches table
-router.post('/', async (req, res) => { 
 
-// Define the new search query
-const newQuery = req.query.q;
+try {
+  // Find up to the three most common search queries
+  const mostCommonQueries = await Searches.findAll({
+    attributes: [
+      'query',
+      [sequelize.fn('COUNT', sequelize.col('query')), 'queryCount'],
+    ],
+    group: ['query'],
+    order: [[sequelize.literal('queryCount'), 'DESC']],
+    limit: 3, // Limit the results to the top 3
+  });
 
-// Start a transaction
-sequelize.transaction(async (newSearch) => {
-  try {
-    // Insert the new search query
-    await Searches.create({ query: newQuery }, { transaction: newSearch });
+  var topQueries = mostCommonQueries.map((result) => result.query);
+} catch (error) {
+  console.error('Error:', error);
+}
 
-    // Check the number of rows in the table
-    const rowCount = await Searches.count();
+console.log(topQueries)
 
-    // If there are more than 25 rows, delete the top row
-    if (rowCount > 25) {
-      await Searches.destroy({
-        where: {},
-        limit: 1,
-        order: [['id', 'ASC']], // Assuming 'id' is the primary key
-        transaction: newSearch,
-      });
-    }
-
-    // Commit the transaction
-    await newSearch.commit();
-
-    console.log('Search query added and excess rows deleted successfully.');
-  } catch (error) {
-    // Rollback the transaction in case of an error
-    await newSearch.rollback();
-    console.error('Error:', error);
-  }
-});
+  res.render('search', {
+    queries:topQueries,
+    logged_in: req.session.logged_in,
+  })
 
 });
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
