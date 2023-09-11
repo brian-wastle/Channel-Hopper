@@ -6,7 +6,7 @@ const dayjs = require('dayjs');
 
 //Get a single communtiy
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     if (req.session.user_id) {
       var user = await Users.findOne({
@@ -16,13 +16,14 @@ router.get('/:id', async (req, res) => {
         attributes: ['name', 'id'],
       });
     } else {
-      var user;
+      // If the user is not authenticated, redirect and return early
+      return res.redirect('/login');
     }
 
+    let currentUserId = 0; // Initialize currentUserId
+
     if (user) {
-      var currentUserId = user.dataValues.id;
-    } else {
-      var currentUserId = 0;
+      currentUserId = user.dataValues.id;
     }
 
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
@@ -36,17 +37,17 @@ router.get('/:id', async (req, res) => {
     const reviewsArray = reviewData.slice(0, 3);
     const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
-      const subscribedData = await CommunityUsers.findOne({ 
-        where: { 
-          user_id: req.session.user_id,
-          community_id: req.params.id, 
-        } 
-      });
+    const subscribedData = await CommunityUsers.findOne({
+      where: {
+        user_id: req.session.user_id,
+        community_id: req.params.id,
+      },
+    });
+
+    let subscriber;
 
     if (subscribedData) {
-    var subscriber = subscribedData.get({ plain: true });
-    } else {
-      var subscriber;
+      subscriber = subscribedData.get({ plain: true });
     }
 
     res.render('community', {
@@ -55,11 +56,11 @@ router.get('/:id', async (req, res) => {
       threads,
       reviews,
       logged_in: req.session.logged_in,
-      current_user_id: currentUserId
+      current_user_id: currentUserId,
     });
-
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    // Handle errors here
+    next(error); // Pass the error to the Express error handler
   }
 });
 
@@ -191,7 +192,7 @@ router.get('/:id/reviews', async (req, res) => {
 
 
 //takes user to new thread page
-router.get('/:id/newthread', withAuth, async (req, res) => {
+router.get('/:id/newthread', async (req, res) => {
   try {
 
     res.render('newThread', {
@@ -204,7 +205,7 @@ router.get('/:id/newthread', withAuth, async (req, res) => {
 });
 
 //takes user to new review page
-router.get('/:id/newreview', withAuth, async (req, res) => {
+router.get('/:id/newreview', async (req, res) => {
   try {
 
     res.render('newreview', {
