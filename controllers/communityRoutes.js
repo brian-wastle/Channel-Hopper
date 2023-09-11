@@ -6,7 +6,7 @@ const dayjs = require('dayjs');
 
 //Get a single communtiy
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     if (req.session.user_id) {
       var user = await Users.findOne({
@@ -16,14 +16,13 @@ router.get('/:id', async (req, res, next) => {
         attributes: ['name', 'id'],
       });
     } else {
-      // If the user is not authenticated, redirect and return early
-      return res.redirect('/login');
+     var user;
     }
 
-    let currentUserId = 0; // Initialize currentUserId
-
     if (user) {
-      currentUserId = user.dataValues.id;
+      var currentUserId = user.dataValues.id;
+    } else {
+      var currentUserId = 0;
     }
 
     const communityData = await Communities.findOne({ where: { id: req.params.id } });
@@ -37,17 +36,17 @@ router.get('/:id', async (req, res, next) => {
     const reviewsArray = reviewData.slice(0, 3);
     const reviews = reviewsArray.map((thread) => thread.get({ plain: true }));
 
-    const subscribedData = await CommunityUsers.findOne({
-      where: {
-        user_id: req.session.user_id,
-        community_id: req.params.id,
-      },
-    });
-
-    let subscriber;
+      const subscribedData = await CommunityUsers.findOne({ 
+        where: { 
+          user_id: req.session.user_id,
+          community_id: req.params.id, 
+        } 
+      });
 
     if (subscribedData) {
-      subscriber = subscribedData.get({ plain: true });
+    var subscriber = subscribedData.get({ plain: true });
+    } else {
+      var subscriber;
     }
 
     res.render('community', {
@@ -56,11 +55,12 @@ router.get('/:id', async (req, res, next) => {
       threads,
       reviews,
       logged_in: req.session.logged_in,
-      current_user_id: currentUserId,
+      current_user_id: currentUserId
     });
-  } catch (error) {
-    // Handle errors here
-    next(error); // Pass the error to the Express error handler
+
+  } catch (err) {
+    res.status(500).json(err);
+  
   }
 });
 
