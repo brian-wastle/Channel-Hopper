@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
 
     //find the reviews from community 1
       const queryOne = `
-      SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
+      SELECT Reviews.id as review_id, Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
 INNER JOIN Users ON Reviews.user_id = Users.id
 WHERE Reviews.community_id = ${communitiesOne[0].id}
@@ -80,7 +80,7 @@ LIMIT 1;
 
     //find the reviews from community 2
 const queryTwo = `
-      SELECT Reviews.id , Reviews.subject, Reviews.date_created , Users.id , Users.name
+      SELECT Reviews.id as review_id, Reviews.subject, Reviews.date_created , Users.id , Users.name
 FROM Reviews
 INNER JOIN Users ON Reviews.user_id = Users.id
 WHERE Reviews.community_id = ${communitiesTwo[0].id}
@@ -93,7 +93,7 @@ LIMIT 1;
         });
 
     const reviewsCommunityTwo = resultsTwo;
-
+console.log(reviewsCommunityTwo)
     res.render('homepage', {
       communitiesOne,
       communitiesTwo,
@@ -336,7 +336,7 @@ console.log(thread)
       logged_in: req.session.logged_in,
       current_user_id: currentUserId
     });
-
+console.log(posts)
   } catch (err) {
     res.status(500).json(err);
   }
