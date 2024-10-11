@@ -34,7 +34,7 @@ If you wish to contribute to this application, the following frameworks/npm pack
        - npm install --save sqlite3
        - npm install --save tedious # Microsoft SQL Server
        - npm install --save oracledb # Oracle Database
-    - - [Sequelize GitHub Repo]([https://github.com/handlebars-lang/handlebars.js](https://github.com/sequelize/sequelize))
+    - [Sequelize GitHub Repo](https://github.com/sequelize/sequelize)
 
 
 - Handlebars.js: Used for templating. It is most commonly installed using npm or yarn:
