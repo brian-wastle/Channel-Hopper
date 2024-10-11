@@ -14,6 +14,8 @@ Channel Hopper is a user-friendly platform that allows members to join communiti
 - [Links](#Links)
     
 ## Installation
+Run 'npm i' in your terminal to install all dependencies.
+
 If you wish to contribute to this application, the following frameworks/npm packages will be required:
 
 - Node.js - To download the latest version of npm, on the command line, run the following command: 
@@ -21,7 +23,7 @@ If you wish to contribute to this application, the following frameworks/npm pack
 
 - Express.js - Create a package.json first with the npm init command. Installation is done using the npm install command: $ npm install express
 
-- Sequelize: npm install --save sequelize
+- Sequelize: Node.js ORM
 
     - You'll also have to manually install the driver for your database of choice:
 
@@ -32,15 +34,17 @@ If you wish to contribute to this application, the following frameworks/npm pack
        - npm install --save sqlite3
        - npm install --save tedious # Microsoft SQL Server
        - npm install --save oracledb # Oracle Database
+    - - [Sequelize GitHub Repo]([https://github.com/handlebars-lang/handlebars.js](https://github.com/sequelize/sequelize))
 
 
-- Handlebars: The reference implementation of Handlebars is written in JavaScript. It is most commonly installed using npm or yarn:
+- Handlebars.js: Used for templating. It is most commonly installed using npm or yarn:
     - npm install handlebars
     - yard add handlebars
+    - [Handlebars.js GitHub Repo](https://github.com/handlebars-lang/handlebars.js)
 
-- Dayjs: To get started with Day.js in your Node.js project, simply add the dependency with NPM.
+- Dayjs: To get started with Day.js in your Node.js project, simply add the dependency with NPM:
     - npm install dayjs
-
+    - [Day.js GitHub Repo](https://github.com/iamkun/dayjs/)
 
 
 
@@ -59,6 +63,5 @@ Please visit the repository:
 
 [Github Repo](https://github.com/brian-wastle/Group-Project-2)
 
-[E-Heroku Link](https://arcane-harbor-01300-f49022b9dacb.herokuapp.com/)
 
  
